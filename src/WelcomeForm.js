@@ -23,7 +23,7 @@ import AirplanemodeActiveIcon from '@material-ui/icons/AirplanemodeActive';
 import { Grid } from '@material-ui/core';
 
 import logoImage from './images/logo.png';
-import doctorImage from './images/doctor.png';
+import doctorImage from './images/blood-logo.png';
 
 import LiveHelpIcon from '@material-ui/icons/LiveHelp';
 import faq from './FAQ';
@@ -107,8 +107,8 @@ const useStyles = makeStyles((theme) => ({
   },
 
   doctorImage: {
-    width: "28px",
-    height: "34px",
+    width: "55px",
+    height: "52px",
     marginRight: "10px",
   },
 
@@ -296,7 +296,7 @@ const getStartedClicked = (event) => {
               />
               
               <span className={classes.pageTitle}> 
-                  Private STD Check in London 
+                  Private Blood Test in London 
               </span>
             </div>
           </Typography>
@@ -306,7 +306,7 @@ const getStartedClicked = (event) => {
               isMobile ? classes.textContentMobile : classes.textContent
             }
           >
-            -&nbsp; Flexible appointment for private STD services whenever you need.
+            -&nbsp; Flexible appointment for blood tests whenever you need.
           </p>
 
           <p

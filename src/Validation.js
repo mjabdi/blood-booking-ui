@@ -47,23 +47,17 @@ export default function ValidateStep (state,setState, step, hasPackage)
         setState(state => ({...state, fullnameError : true}));
         error = true;
       }
-      if (state.email && state.email.length > 0 && !EmailValidator.validate(state.email))
+      if (!state.email || !EmailValidator.validate(state.email))
       {
         setState(state => ({...state, emailError : true}));
         error = true;
       }
 
-      // if (!state.retypeEmail || !EmailValidator.validate(state.retypeEmail) || state.email !== state.retypeEmail)
-      // {
-      //   setState(state => ({...state, retypeEmailError : true}));
-      //   error = true;
-      // }
-
-      // if (!state.phone || state.phone.trim().length < 1)
-      // {
-      //   setState(state => ({...state, phoneError : true}));
-      //   error = true;
-      // }
+      if (!state.phone || state.phone.trim().length < 1)
+      {
+        setState(state => ({...state, phoneError : true}));
+        error = true;
+      }
     }
 
       return !error;   

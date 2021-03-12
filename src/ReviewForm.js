@@ -288,8 +288,9 @@ export default function ReviewForm() {
             }}
           >
             You can always change or cancel your appointment up-to 24 hours to
-            your appointment with ease through your patient portal (only if you
-            have entered your email address in the previous step)
+            your appointment with ease through your patient portal
+             {/* (only if you
+            have entered your email address in the previous step) */}
           </Alert>
         </div>
       </Fade>
@@ -362,7 +363,7 @@ export default function ReviewForm() {
                     </span>
                   </li>
 
-                  <li className={classes.li}>
+                  <li className={classes.li} hidden={!state.packagePrice}>
                     <span className={classes.infoTitleTime}>
                       <FontAwesomeIcon
                         icon={faPoundSign}
@@ -375,6 +376,7 @@ export default function ReviewForm() {
                       {state.packagePrice || "-"}{" "}
                     </span>
                   </li>
+
                 </ul>
               </div>
             </Grid>

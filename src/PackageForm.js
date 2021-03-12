@@ -11,6 +11,7 @@ import AntiBodyComponent from "./AntiBodyComponent";
 import {
   Button,
   DialogActions,
+  DialogTitle,
   FormControl,
   FormLabel,
   Icon,
@@ -22,6 +23,10 @@ import Checkout from "./checkout";
 import { faMars, faVenus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Dialog from "@material-ui/core/Dialog";
+import { IconButton } from "@material-ui/core";
+import CloseIcon from "@material-ui/icons/Close";
+import CheckIcon from "@material-ui/icons/Check";
+import CheckCircleRoundedIcon from "@material-ui/icons/CheckCircleRounded";
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -41,8 +46,8 @@ const useStyles = makeStyles((theme) => ({
 
     transition: "all 0.4s ease-in-out",
     boxShadow: " 0 0 10px rgb(0 0 0 / 20%)",
-    [theme.breakpoints.up("md")]: {
-      minHeight: "170px",
+    [theme.breakpoints.up("sm")]: {
+      minHeight: "200px",
     },
 
     cursor: "pointer",
@@ -56,49 +61,97 @@ const useStyles = makeStyles((theme) => ({
 
 export const Packages = [
   {
-    packageName: "Sexual Health Clinic - Bronze",
-    title: "Bronze",
-    malePrice: "£250.00",
-    femalePrice: "£250.00",
+    packageName: "SLIVER BLOOD TEST",
+    title: "SLIVER BLOOD TEST",
+    malePrice: "£85.00",
+    femalePrice: "£85.00",
     color: "#aaa",
     descriptions: [
-      "Chlamydia and Gonorrhoea - Urine Sample",
-      "Syphilis, HIV I/II Antibodies - Blood Sample",
+      "Kidney Function",
+      "Uric Acid",
+      "Bone Metabolism",
+      "Nutrition and Immunity",
+      "Liver Function",
+      "Cholesterol Profile",
+      "Blood Sugar (Glucose)",
+      "Haematology - Anaemia, Red & White Blood Cell count",
+      "Inflammatory Markers",
     ],
+    suitableFor:
+      "General check-up usually for healthy people to determine normal body function. Very helpful in indicating deficiencies and identifying problems.",
   },
   {
-    packageName: "Sexual Health Clinic - Silver",
-    title: "Silver",
-    malePrice: "£325.00",
-    femalePrice: "£375.00",
+    packageName: "SLIVER PLUS BLOOD TEST",
+    title: "SLIVER PLUS BLOOD TEST",
+    malePrice: "£155.00",
+    femalePrice: "£155.00",
     color: "#00a1c5",
     descriptions: [
-      "Chlamydia, Gonorrhoea, Mycoplasma, Trichomoniasis, Ureaplasma, Gardnerella - Urine Sample",
-      "Herpes I&II, Syphilis, HIV I/II Antibodies - Blood Sample",
-      "Additional Bacterial Swab for Women; screening for Candida and Bacterial Vaginosis",
+      "Kidney Function",
+      "Uric Acid",
+      "Bone Metabolism",
+      "Nutrition and Immunity",
+      "Liver Function",
+      "Cholesterol Profile",
+      "Blood Sugar (Glucose)",
+      "Haematology - Anaemia, Red & White Blood Cell count",
+      "Inflammatory Markers",
+      "Iron Levels",
+      "CK and LDH to look at muscle function",
     ],
+    suitableFor:
+      " Young, healthy and active people looking to monitor or improve physical activity and daily health. Very helpful in indicating deficiencies and identifying problems.",
   },
   {
-    packageName: "Sexual Health Clinic - Gold",
-    title: "Gold",
-    malePrice: "£475.00",
-    femalePrice: "£490.00",
+    packageName: "GOLD BLOOD TEST",
+    title: "GOLD BLOOD TEST",
+    malePrice: "£210.00",
+    femalePrice: "£210.00",
     color: "#ff7a11",
     descriptions: [
-      "Chlamydia, Gonorrhoea, Mycoplasma, Trichomoniasis, Ureaplasma, Gardnerella, Herpes I&II - Urine Sample",
-      "Syphilis, HIV I/II Antibodies, Hepatitis B & C - Blood Sample",
-      "Additional Swab for Women; screening for Candida, BV, Fungi, Trichomoniasis, Ureaplasma and Gardnerella",
+      "Kidney Function",
+      "Uric Acid",
+      "Bone Metabolism",
+      "Nutrition and Immunity",
+      "Liver Function",
+      "Cholesterol Profile",
+      "Blood Sugar (Glucose)",
+      "Haematology - Anaemia, Red & White Blood Cell count",
+      "Inflammatory Markers",
+      "Iron Levels",
+      "CK and LDH to look at muscle function",
+      "Thyroid Function Test",
     ],
+    suitableFor:
+      " All ages to have a blood assessment of overall health and organ function. Generally good to perform annually in order to monitor changes in levels. This screening tool can also be used to confirm certain diagnoses.",
+    prefix: "Early detection of diabetes - HBA1C Test",
+    suffix:
+      "A PSA test can be performed for men over the age of 50, the cost is £80.",
   },
   {
-    packageName: "Sexual Health Clinic - Platinium",
-    title: "Platinium",
-    malePrice: "£625.00",
-    femalePrice: "£665.00",
+    packageName: "PLATINIUM BLOOD TEST",
+    title: "PLATINIUM BLOOD TEST",
+    malePrice: "£390.00",
+    femalePrice: "£390.00",
     color: "#333",
     descriptions: [
-      "The same STD screenings are included in the Platinum Screen as our Gold Package, however with an Human Papilloma Virus (HPV) Swab including 16, 18 and High Risk types.",
+      "Kidney Function",
+      "Uric Acid",
+      "Bone Metabolism",
+      "Nutrition and Immunity",
+      "Liver Function",
+      "Cholesterol Profile",
+      "Blood Sugar (Glucose)",
+      "Haematology - Anaemia, Red & White Blood Cell count",
+      "Inflammatory Markers",
+      "Iron Levels",
+      "CK and LDH to look at muscle function",
+      "Thyroid Function Test",
+      "Early detection of diabetes - HBA1C Test",
+      "Vitamin D, B12 and Folic Acid",
     ],
+    suitableFor:
+      "High performance athletes or those desiring a detailed and comprehensive insight into their biochemistry, organ function and muscoskeletal functions.",
   },
 ];
 
@@ -195,12 +248,33 @@ export default function PackageForm() {
     state.packagePrice || 0
   );
 
-  const [notes, setNotes] = React.useState(state.notes ?? "");
+  const [notes, setNotes] = React.useState(
+    state.packageName && state.packageName.indexOf("(Blood Test)") > 0
+      ? state.packageName.substr(
+          0,
+          state.packageName.indexOf("(Blood Test)") - 1
+        )
+      : ""
+  );
 
   const notesChanged = (event) => {
     setNotes(event.target.value);
-    setState((state) => ({ ...state, notes: event.target.value }));
-    setState((state) => ({ ...state, notesError: false }));
+
+    if (event.target.value && event.target.value.length > 0) {
+      const _packageName = `${event.target.value} (Blood Test)`;
+      const price = 0;
+      setPackageName(`${_packageName}`);
+      setPackagePrice({ ...state, packagePrice: price });
+
+      setState((state) => ({
+        ...state,
+        packageName: `${_packageName}`,
+        packagePrice: price,
+      }));
+    }
+
+    // setState((state) => ({ ...state, notes: event.target.value }));
+    // setState((state) => ({ ...state, notesError: false }));
   };
 
   useEffect(() => {
@@ -210,6 +284,8 @@ export default function PackageForm() {
   const packageClicked = (_packageName, price) => {
     setPackageName(`${_packageName}`);
     setPackagePrice({ ...state, packagePrice: price });
+
+    setNotes("");
 
     setState((state) => ({
       ...state,
@@ -316,12 +392,12 @@ export default function PackageForm() {
           style={{
             textAlign: "center",
             fontSize: "1.2rem",
-            fontWeight: "400",
-            color: "#555",
+            fontWeight: "500",
+            color: "#777",
             marginBottom: "20px",
           }}
         >
-          Full STD Check Packages
+          Popular Blood Test Packages
         </div>
 
         <Grid
@@ -331,7 +407,7 @@ export default function PackageForm() {
           style={{ marginTop: "10px" }}
         >
           {Packages.map((item) => (
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} sm={6}>
               <div
                 className={classes.packageBox}
                 style={
@@ -353,15 +429,12 @@ export default function PackageForm() {
                 >
                   <div
                     onClick={() =>
-                      packageClicked(
-                        item.packageName,
-                        `${item.malePrice}(Male) - ${item.femalePrice}(Female)`
-                      )
+                      packageClicked(item.packageName, `${item.malePrice}`)
                     }
                     style={{ width: "97%" }}
                   >
                     <Grid item xs={12}>
-                      <div style={{ fontWeight: "500", fontSize: "1.8rem" }}>
+                      <div style={{ fontWeight: "500", fontSize: "1.2rem" }}>
                         {item.title}
                       </div>
                     </Grid>
@@ -371,9 +444,9 @@ export default function PackageForm() {
                         {item.malePrice === item.femalePrice && (
                           <div
                             style={{
-                              fontSize: "2rem",
-                              marginTop: "35px",
-                              marginBottom: "45px",
+                              fontSize: "1.5rem",
+                              marginTop: "15px",
+                              marginBottom: "25px",
                               fontWeight: "600",
                             }}
                           >
@@ -422,10 +495,7 @@ export default function PackageForm() {
                         fullWidth
                         variant="contained"
                         onClick={() =>
-                          packageClicked(
-                            item.packageName,
-                            `${item.malePrice}(Male) - ${item.femalePrice}(Female)`
-                          )
+                          packageClicked(item.packageName, `${item.malePrice}`)
                         }
                       >
                         Select
@@ -452,13 +522,13 @@ export default function PackageForm() {
               textAlign: "center",
               width: "100%",
               fontSize: "1.2rem",
-              fontWeight: "400",
-              color: "#777",
+              fontWeight: "600",
+              color: "#333",
               marginBottom: "20px",
               marginTop: "20px",
             }}
           >
-            Why Choose a Package?
+            Looking for a specific blood test? Write to us below.
           </div>
 
           <div
@@ -469,421 +539,131 @@ export default function PackageForm() {
               color: "#777",
             }}
           >
-            Our STD Packages offer <b>excellent value</b> for our{" "}
-            <b>premium service</b>. Included as standard: <b>A free review</b>{" "}
-            of your results with our GP and a <b>free prescription</b> for
-            whatever medication which you may need.
+            <TextField
+              style={{ marginTop: "10px" }}
+              id="notes"
+              // error={state.notesError && state.package === "Others"}
+              fullWidth
+              // required={state.package === "Others"}
+              label=""
+              value={notes}
+              onChange={notesChanged}
+              placeholder="Enter blood test"
+              variant="outlined"
+            />
           </div>
         </Grid>
       </div>
-
-      <div
-        style={{
-          border: "1px solid #ddd",
-          padding: "20px",
-          borderRadius: "8px",
-          marginTop: "10px",
-          boxShadow: "0px 0px 20px #dadada",
-        }}
-      >
-        <div
-          style={{
-            textAlign: "center",
-            fontSize: "1.2rem",
-            fontWeight: "500",
-            color: "#ff7a11",
-            marginBottom: "20px",
-            marginTop: "20px",
-          }}
-        >
-          FAST STD SCREENS RESULTS - IN 4 WORKING HOURS
-        </div>
-        <Grid
-          container
-          spacing={1}
-          alignItems="baseline"
-          style={{ marginTop: "10px" }}
-        >
-          {Packages2.map((item) => (
-            <Grid item xs={12} md={6}>
-              <div
-                className={classes.packageBox}
-                style={
-                  packageName === item.packageName
-                    ? {
-                        borderColor: item.color,
-                        color: "#fff",
-                        backgroundColor: item.color,
-                      }
-                    : { borderColor: item.color, color: item.color }
-                }
-                onClick={() => package2Clicked(item.packageName, item.price)}
-              >
-                <Grid
-                  container
-                  direction="column"
-                  justify="center"
-                  alignItems="center"
-                >
-                  <Grid item>
-                    <div
-                      style={{
-                        fontWeight: "600",
-                        fontSize: "1rem",
-                        color:
-                          packageName === item.packageName ? "#fff" : "#00a1c5",
-                        marginTop: "5px",
-                      }}
-                    >
-                      {item.packageName}
-                    </div>
-                  </Grid>
-
-                  <Grid item>
-                    <div
-                      style={{
-                        fontWeight: "400",
-                        fontSize: "0.9rem",
-                        color:
-                          packageName === item.packageName ? "#fff" : "#555",
-                        marginTop: "10px",
-                      }}
-                    >
-                      {item.desc}
-                    </div>
-                  </Grid>
-
-                  <Grid item>
-                    <div style={{ marginTop: "10px" }}>
-                      <FormControlLabel
-                        control={
-                          packageName === item.packageName ? (
-                            <WhiteRadio
-                              color="secondary"
-                              checked={packageName === `${item.packageName}`}
-                              onClick={() =>
-                                package2Clicked(item.packageName, item.price)
-                              }
-                            />
-                          ) : (
-                            <Radio
-                              color="secondary"
-                              checked={packageName === `${item.packageName}`}
-                              onClick={() =>
-                                package2Clicked(item.packageName, item.price)
-                              }
-                            />
-                          )
-                        }
-                        label={
-                          <span
-                            style={{ fontSize: "1.5rem", fontWeight: "500" }}
-                          >{`${item.price}`}</span>
-                        }
-                      />
-                    </div>
-                  </Grid>
-                </Grid>
-              </div>
-            </Grid>
-          ))}
-        </Grid>
-      </div>
-
-      <div
-        style={{
-          textAlign: "center",
-          fontSize: "1.5rem",
-          fontWeight: "400",
-          color: "#555",
-          marginBottom: "10px",
-          marginTop: "20px",
-        }}
-      >
-        Individual Tests
-      </div>
-
-      <div
-        style={{
-          textAlign: "center",
-          width: "100%",
-          fontWeight: "400",
-          color: "#777",
-          lineHeight: "1.4rem",
-        }}
-      >
-        For peace of mind,{" "}
-        <b>
-          {" "}
-          those currently presenting with symptoms should opt for a package{" "}
-        </b>
-        , which includes a follow-up appointment and treatment.
-      </div>
-
-      <Grid
-        container
-        spacing={1}
-        direction="row"
-        justify="flex-start"
-        alignItems="stretch"
-        style={{ marginTop: "10px" }}
-      >
-        {Individuals.map((item) => (
-          <Grid item xs={12} md={3}>
-            <div
-              className={classes.packageBox}
-              style={
-                state.indivisualTests?.findIndex(
-                  (e) => e.packageName === item.packageName
-                ) >= 0 && packageName.startsWith("Indivisual Tests")
-                  ? {
-                      borderColor: "#ff7a11",
-                      color: "#fff",
-                      backgroundColor: "#ff7a11",
-                    }
-                  : { borderColor: "#ff7a11", color: "#ff7a11" }
-              }
-              onClick={(event) =>
-                indivisualClicked(
-                  state.indivisualTests.findIndex(
-                    (e) => e.packageName === item.packageName
-                  ) < 0,
-                  item.packageName,
-                  item.price
-                )
-              }
-            >
-              <Grid
-                container
-                direction="column"
-                justify="center"
-                alignItems="center"
-              >
-                <Grid item>
-                  <div
-                    style={{
-                      fontWeight: "500",
-                      fontSize: "0.9rem",
-                      color:
-                        packageName.startsWith("Indivisual Tests") &&
-                        state.indivisualTests?.findIndex(
-                          (e) => e.packageName === item.packageName
-                        ) >= 0
-                          ? "#fff"
-                          : "#00a1c5",
-                      marginTop: "5px",
-                    }}
-                  >
-                    {item.packageName}
-                  </div>
-                </Grid>
-
-                <Grid item>
-                  <div style={{ marginTop: "10px" }}>
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          color="secondary"
-                          checked={
-                            state.indivisualTests?.findIndex(
-                              (e) => e.packageName === item.packageName
-                            ) >= 0 && packageName.startsWith("Indivisual Tests")
-                          }
-                          onChange={(event) =>
-                            indivisualClicked(
-                              event.target.checked,
-                              item.packageName,
-                              item.price
-                            )
-                          }
-                        />
-                      }
-                      label={
-                        <span style={{ fontSize: "0.9rem", fontWeight: "500" }}>
-                          {item.desc
-                            ? `${item.desc}-${item.price}`
-                            : `${item.price}`}
-                        </span>
-                      }
-                    />
-                  </div>
-                </Grid>
-              </Grid>
-            </div>
-          </Grid>
-        ))}
-      </Grid>
-
-      <div
-        style={{
-          textAlign: "center",
-          fontSize: "1.5rem",
-          fontWeight: "400",
-          color: "#555",
-          marginBottom: "10px",
-          marginTop: "20px",
-        }}
-      >
-        Combo STD Checks
-      </div>
-
-      <Grid
-        container
-        spacing={1}
-        direction="row"
-        justify="center"
-        alignItems="stretch"
-        style={{ marginTop: "10px" }}
-      >
-        {IndividualsCombo.map((item) => (
-          <Grid item xs={12} md={4}>
-            <div
-              className={classes.packageBox}
-              style={
-                state.indivisualCombos?.findIndex(
-                  (e) => e.packageName === item.packageName
-                ) >= 0 && packageName.startsWith("Combo STD Checks")
-                  ? {
-                      borderColor: "#ff7a11",
-                      color: "#fff",
-                      backgroundColor: "#ff7a11",
-                    }
-                  : { borderColor: "#ff7a11", color: "#ff7a11" }
-              }
-              onClick={(event) =>
-                indivisualComboClicked(
-                  state.indivisualCombos.findIndex(
-                    (e) => e.packageName === item.packageName
-                  ) < 0,
-                  item.packageName,
-                  item.price
-                )
-              }
-            >
-              <Grid
-                container
-                direction="column"
-                justify="center"
-                alignItems="center"
-              >
-                <Grid item>
-                  <div
-                    style={{
-                      fontWeight: "500",
-                      fontSize: "0.9rem",
-                      color:
-                        packageName.startsWith("Combo STD Checks") &&
-                        state.indivisualCombos?.findIndex(
-                          (e) => e.packageName === item.packageName
-                        ) >= 0
-                          ? "#fff"
-                          : "#00a1c5",
-                      marginTop: "5px",
-                    }}
-                  >
-                    {item.packageName}
-                  </div>
-                </Grid>
-
-                <Grid item>
-                  <div style={{ marginTop: "10px" }}>
-                    <FormControlLabel
-                      control={
-                        <Checkbox
-                          color="secondary"
-                          checked={
-                            state.indivisualCombos?.findIndex(
-                              (e) => e.packageName === item.packageName
-                            ) >= 0 && packageName.startsWith("Combo STD Checks")
-                          }
-                          onChange={(event) =>
-                            indivisualComboClicked(
-                              event.target.checked,
-                              item.packageName,
-                              item.price
-                            )
-                          }
-                        />
-                      }
-                      label={
-                        <span style={{ fontSize: "0.9rem", fontWeight: "500" }}>
-                          {item.desc
-                            ? `${item.desc}-${item.price}`
-                            : `${item.price}`}
-                        </span>
-                      }
-                    />
-                  </div>
-                </Grid>
-              </Grid>
-            </div>
-          </Grid>
-        ))}
-
-        <div
-          style={{
-            backgroundColor: "#a0a0a0",
-            color: "#fff",
-            borderRadius: "4px",
-            padding: "10px",
-            fontSize: "1rem",
-            marginTop: "20px",
-            marginBottom: "10px",
-            fontWeight: "400",
-          }}
-        >
-          A blood draw fee of{" "}
-          <span
-            style={{
-              backgroundColor: "#f68529",
-              padding: "1px 6px",
-              fontWeight: "500",
-              fontSize: "1.2rem",
-            }}
-          >
-            £50
-          </span>{" "}
-          is payable for STI blood tests, urine tests and swabs carry no
-          surcharge.
-        </div>
-      </Grid>
 
       {infoItem && (
         <Dialog onClose={handleCloseDialog} open={showInfoDialog}>
-          <div
-            style={{
-              padding: "20px",
-              backgroundColor: infoItem.color,
-              color: "#fff",
-            }}
-          >
-            <div style={{ fontSize: "1.2rem", fontWeight: "500" }}>
-              {infoItem.title} Screen testing for:
+          <div style={{ position: "relative" }}>
+            <div
+              style={{
+                fontSize: "1.2rem",
+                fontWeight: "500",
+                backgroundColor: "#333",
+                color: "#fff",
+                margin: "0",
+                padding: "20px",
+              }}
+            >
+              {infoItem.title}
             </div>
 
-            <div>
-              <ul>
-                {infoItem.descriptions.map((desc) => (
-                  <li
-                    style={{
-                      fontSize: "1.1rem",
-                      lineHeight: "2rem",
-                      fontWeight: "400",
-                      marginTop: "20px",
-                    }}
-                  >
-                    {desc}
-                  </li>
-                ))}
-              </ul>
+            <div style={{ position: "absolute", right: "10px", top: "10px" }}>
+              <IconButton onClick={handleCloseDialog}>
+                <CloseIcon style={{ color: "#fff" }} />
+              </IconButton>
+            </div>
+
+            <div
+              style={
+                {
+                  // padding: "20px",
+                }
+              }
+            >
+              <div
+                style={{
+                  fontSize: "1.1rem",
+                  fontWeight: "600",
+                  backgroundColor: "#fff",
+                  color: "#333",
+                  margin: "0",
+                  padding: "20px 10px",
+                }}
+              >
+                {`${infoItem.title} - ${infoItem.malePrice}`}
+              </div>
+
+              <div>
+                <ul style={{ listStyle: "none" }}>
+                  {infoItem.descriptions.map((desc) => (
+                    <li
+                      style={{
+                        fontSize: "0.95rem",
+                        lineHeight: "1rem",
+                        fontWeight: "400",
+                        marginTop: "10px",
+                      }}
+                    >
+                      <CheckCircleRoundedIcon
+                        style={{
+                          fontSize: "0.95rem",
+                          marginLeft: "-20px",
+                          color: "#ff7a11",
+                        }}
+                      />
+                      <span style={{ paddingLeft: "10px" }}>{desc}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {infoItem.prefix && (
+                <div
+                  style={{
+                    padding: "20px",
+                    paddingBottom: "0px",
+                    marginTop: "5px",
+                    color: "#555",
+                    fontSize: "0.85rem",
+                    lineHeight: "1.4rem",
+                  }}
+                >
+                  {infoItem.prefix}
+                </div>
+              )}
+
+              <div
+                style={{
+                  padding: "20px",
+                  marginTop: "5px",
+                  color: "#555",
+                  fontSize: "0.85rem",
+                  lineHeight: "1.4rem",
+                }}
+              >
+                Suitable for : {infoItem.suitableFor}
+              </div>
+
+              {infoItem.suffix && (
+                <div
+                  style={{
+                    padding: "0px 20px",
+                    marginTop: "5px",
+                    marginBottom: "20px",
+                    color: "#555",
+                    fontSize: "0.85rem",
+                    lineHeight: "1.4rem",
+                  }}
+                >
+                  {infoItem.suffix}
+                </div>
+              )}
             </div>
           </div>
-
-          <DialogActions>
-            <Button onClick={handleCloseDialog} color="default">
-              Close
-            </Button>
-          </DialogActions>
         </Dialog>
       )}
     </React.Fragment>

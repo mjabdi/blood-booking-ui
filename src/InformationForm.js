@@ -142,7 +142,7 @@ export default function InformationForm() {
       </Typography>
 
       
-      <Fade down>
+      {/* <Fade down>
       <div>
         <Alert
           severity="info"
@@ -156,7 +156,7 @@ export default function InformationForm() {
           We care about your privacy, you don't have to enter your email address or mobile number, but if you provide us with an email address, we can send you the confirmation email and details of your appointment .
         </Alert>
       </div>
-      </Fade>
+      </Fade> */}
 
       <Grid
         container
@@ -179,8 +179,9 @@ export default function InformationForm() {
         <Grid item xs={12} md={6}>
           <TextField
             error={state.phoneError ? true : false}
+            required
             id="phone"
-            label="Mobile Number (optional)"
+            label="Mobile Number"
             fullWidth
             autoComplete="tel"
             value={phone}
@@ -190,8 +191,9 @@ export default function InformationForm() {
         <Grid item xs={12} md={12}>
           <TextField
             error={state.emailError ? true : false}
+            required
             id="email"
-            label="Email Address (optional)"
+            label="Email Address"
             fullWidth
             autoComplete="email"
             type="email"
