@@ -23,20 +23,11 @@ export default function ValidateStep (state,setState, step, hasPackage)
       }
     }  else if (step === 2 && !hasPackage){
       // validate Package
-      if (!state.packageName || state.packageName.length < 1)
+      if ((!state.packageName || state.packageName.length < 1) && (!state.indivisualTests || state.indivisualTests.length === 0) && (!state.notes || state.notes.trim().length === 0))
       {
         error = true;
       }
 
-      if (state.packageName === "Indivisual Tests" && state.indivisualTests.length === 0)
-      {
-        error = true;
-      }
-
-      if (state.packageName === "Combo STD Checks" && state.indivisualCombos.length === 0)
-      {
-        error = true;
-      }
 
     }
     
@@ -56,6 +47,12 @@ export default function ValidateStep (state,setState, step, hasPackage)
       if (!state.phone || state.phone.trim().length < 1)
       {
         setState(state => ({...state, phoneError : true}));
+        error = true;
+      }
+
+      if (!state.birthDate || state.birthDate.length !== 10)
+      {
+        setState(state => ({...state, birthDateError : true}));
         error = true;
       }
     }

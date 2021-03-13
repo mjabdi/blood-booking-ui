@@ -78,6 +78,10 @@ export default function InformationForm() {
   const [state, setState] = React.useContext(GlobalState);
   const [fullname, setFullname] = React.useState(state.fullname ?? "");
   const [email, setEmail] = React.useState(state.email ?? "");
+
+  const [birthDate, setBirthDate] = React.useState(state.birthDate ?? null);
+
+
   const [retypeEmail, setRetypeEmail] = React.useState(state.retypeEmail ?? "");
   const [emailConfirmed, setEmailConfirmed] = React.useState(
     state.emailConfirmed ?? false
@@ -85,13 +89,15 @@ export default function InformationForm() {
 
   const [phone, setPhone] = React.useState(state.phone ?? "");
 
-  const [notes, setNotes] = React.useState(state.notes ?? "");
 
-  const notesChanged = (event) => {
-    setNotes(event.target.value);
-    setState((state) => ({ ...state, notes: event.target.value }));
-    setState((state) => ({ ...state, notesError: false }));
-  };
+  const birthDateChanged = (dateStr) =>
+  {
+
+      setBirthDate(dateStr);
+      setState(state => ({...state, birthDate: dateStr}));
+      setState(state => ({...state, birthDateError : false}));
+  }  
+
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -142,22 +148,6 @@ export default function InformationForm() {
       </Typography>
 
       
-      {/* <Fade down>
-      <div>
-        <Alert
-          severity="info"
-          style={{
-            marginBottom: "15px",
-            fontSize: "0.95rem",
-            lineHeight: "1.5rem",
-            textAlign: "justify",
-          }}
-        >
-          We care about your privacy, you don't have to enter your email address or mobile number, but if you provide us with an email address, we can send you the confirmation email and details of your appointment .
-        </Alert>
-      </div>
-      </Fade> */}
-
       <Grid
         container
         spacing={4}
@@ -203,45 +193,18 @@ export default function InformationForm() {
           />
         </Grid>
 
-        {/* <Grid item xs={12} md={6}>
-          <TextField
-            error={state.retypeEmailError ? true : false}
-            required
-            id="retypeEmail"
-            label="Retype Email Address"
-            fullWidth
-            autoComplete="email"
-            type="email"
-            value={retypeEmail}
-            onChange={retypeEmailChanged}
-            // helperText = 'This email address is where you will receive your results. Please tick the box below to confirm that this is a private email address to which you are happy for us to send your results.'
-          />
-        </Grid> */}
+        <Grid item xs={12} md={12}>
+               <DateField
+                error={state.birthDateError}
+                title="Date of Birth"
+                value={birthDate}
+                dateChanged={birthDateChanged}
+             >
 
-        {/* <Grid item xs={12} className={classes.formControl} >
-          <FormControlLabel className={classes.formControl}  style={ {color: state.emailConfirmedError ? "red" : ''}} 
-            control={<Checkbox className={classes.formControl} style={ {color: state.emailConfirmedError ? "red" : ''}}  color="secondary" name="emailConfirmCheckBox" checked={emailConfirmed} onChange={emailConfirmedChanged} />}
-             label={<span style={{ fontSize: '0.8rem' }}>{`I confirm that this is a private email address to which I am happy for you to send my results.`} </span>}
-          />
-          <p>{'* Please take care when entering your information, and double check that everything entered on this form is correct.'}</p>
-        </Grid> */}
-
-        <Grid item xs={12}>
-          <TextField
-            style={{ marginTop: "10px" }}
-            id="notes"
-            // error={state.notesError && state.package === "Others"}
-            fullWidth
-            // required={state.package === "Others"}
-            label="Notes (optional)"
-            value={notes}
-            onChange={notesChanged}
-            multiline
-            rows={4}
-            placeholder="If there's anything you want to tell the doctor beforehand, enter it here..."
-            variant="outlined"
-          />
+             </DateField>
         </Grid>
+
+
       </Grid>
     </React.Fragment>
   );

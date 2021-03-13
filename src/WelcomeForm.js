@@ -306,7 +306,7 @@ const getStartedClicked = (event) => {
               isMobile ? classes.textContentMobile : classes.textContent
             }
           >
-            -&nbsp; Flexible appointment for blood tests whenever you need.
+            -&nbsp; Flexible appointments for blood testing
           </p>
 
           <p
@@ -314,7 +314,7 @@ const getStartedClicked = (event) => {
               isMobile ? classes.textContentMobile : classes.textContent
             }
           >
-            -&nbsp; Absolute discretion.
+            -&nbsp; Absolute discretion with your results.
 
           </p>
 
@@ -326,7 +326,7 @@ const getStartedClicked = (event) => {
               isMobile ? classes.textContentMobile : classes.textContent
             }
           >
-            -&nbsp; Highly Experienced Doctors.
+            -&nbsp; Highly Experienced Phlebotomists
           </p>
 
           <p
@@ -334,7 +334,7 @@ const getStartedClicked = (event) => {
               isMobile ? classes.textContentMobile : classes.textContent
             }
           >
-             -&nbsp; We are open seven days a week.
+             -&nbsp; Open all 7 days of the week
           </p>
 
           <p
@@ -342,7 +342,7 @@ const getStartedClicked = (event) => {
               isMobile ? classes.textContentMobile : classes.textContent
             }
           >
-             -&nbsp; No card details or payment necessary.
+             -&nbsp; No card details or payment necessary to book
           </p>
 
           <p
@@ -350,9 +350,7 @@ const getStartedClicked = (event) => {
               isMobile ? classes.textContentMobile : classes.textContent
             }
           >
-             -&nbsp; Plans change and you may need to cancel or rearrange your
-            appointment. We take payment for your visit only when you attend the
-            clinic.
+             -&nbsp; Plans change and you may need to cancel or rearrange your appointment. We take payment for your visit only when you attend the clinic.
           </p>
 
           <Button

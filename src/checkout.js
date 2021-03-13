@@ -272,9 +272,11 @@ export default function Checkout() {
           fullname: state.fullname,
           email: state.email || '',
           phone: state.phone || '',
+          birthDate: state.birthDate,
           notes: state.notes || '',
           packageName : state.packageName,
-          estimatedPrice: state.packagePrice
+          indivisualTests: state.indivisualTests && state.indivisualTests.length > 0 ? JSON.stringify(state.indivisualTests) : null,
+          estimatedPrice: state.totalPrice || ''
         };
 
         const promise = BookService.bookAppointment({

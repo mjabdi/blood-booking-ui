@@ -17,4 +17,9 @@ export default class BookService {
         return API.get(`/api/blood/book/getbookingbyid?id=${id}`);
     }
 
+    static getAllCodes = () =>
+    {
+        return API.get(`/api/medex/invoice/getallbloodcodes`)
+    }
+
 }

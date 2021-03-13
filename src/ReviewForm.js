@@ -13,9 +13,11 @@ import { faClock } from "@fortawesome/free-solid-svg-icons";
 import { faHourglassHalf } from "@fortawesome/free-solid-svg-icons";
 import { faNotesMedical } from "@fortawesome/free-solid-svg-icons";
 import { faPoundSign } from "@fortawesome/free-solid-svg-icons";
+import { faVial } from "@fortawesome/free-solid-svg-icons";
+
 
 import dateFormat from "dateformat";
-import { Button, Checkbox, FormControlLabel } from "@material-ui/core";
+import { Button, Checkbox, Chip, FormControlLabel } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import PersonAddIcon from "@material-ui/icons/PersonAdd";
 import Icon from "@material-ui/core/Icon";
@@ -233,34 +235,23 @@ export default function ReviewForm() {
 
   const calculatePrice = () => {
     let price = 0;
-    let packageDetails = ''
-    if (state.packageName === "Indivisual Tests") {
-      state.indivisualTests.forEach((element,index) => {
-        price += parseFloat(element.price.substr(1));
-        packageDetails += (element.packageName)
-        if (index < state.indivisualTests.length - 1)
-        {
-          packageDetails += ' - '
-        }
+    if (state.indivisualTests && state.indivisualTests.length > 0) {
+      state.indivisualTests.forEach(item => {
+        price += item.price
       });
-    } else if (state.packageName === "Combo STD Checks") {
-      state.indivisualCombos.forEach((element, index) => {
-        price += parseFloat(element.price.substr(1));
-        packageDetails += (element.packageName)
-        if (index < state.indivisualCombos.length - 1)
-        {
-          packageDetails += ' - '
-        }
-      });
-    } else {
-      return;
     }
+
+    if (state.packagePrice)
+    {
+      price += parseFloat(state.packagePrice.substr(1))
+    }
+
 
     setState((state) => ({
       ...state,
-      packagePrice: price.toLocaleString("en-GB", { style: 'currency', currency: 'GBP' }),
-      packageName: `${state.packageName} (${packageDetails})`
+      totalPrice: price > 0 ? price.toLocaleString("en-GB", { style: 'currency', currency: 'GBP' }) : null,
     }));
+
   };
 
   const dataConfirmedChanged = (event) => {
@@ -359,11 +350,53 @@ export default function ReviewForm() {
                     </span>
                     <span className={classes.infoData} style={{fontWeight:"600"}}>
                       {" "}
-                      {state.packageName || "-"}{" "}
+                      {state.packageName? `${state.packageName} - ${state.packagePrice}` : '-'}
+                    </span>
+                  </li>
+                  
+                  <li className={classes.li}  style={{lineHeight:"2rem"}} hidden={!state.indivisualTests || state.indivisualTests.length === 0}>
+                    <span className={classes.infoTitleTime} >
+                      <FontAwesomeIcon
+                        icon={faVial}
+                        className={classes.icon}
+                        style={{marginTop:"5px"}}
+                      />
+                      Indivisual Tests:
+                    </span>
+                    <div>
+                        {state.indivisualTests && state.indivisualTests.map(item => (
+                                          <Chip
+                                          variant="outlined"
+                                          color="default"
+                                          label={
+                                            <Typography
+                                              style={{
+                                                whiteSpace: "normal",
+                                                fontSize: "0.9rem",
+                                                fontWeight: "500",
+                                                padding: "10px",
+                                                width: "100%",
+                                              }}
+                                            >
+                                              {`${item.code} - ${item.description} - ${item.price.toLocaleString("en-GB", { style: 'currency', currency: 'GBP' })}`}
+                                            </Typography>
+                                          }
+                                          style={{ height: "100%", width: "100%", marginBottom:"5px", marginTop:"5px" }}
+                                        />
+                        ))}
+                    </div>
+                  </li>
+
+                  <li className={classes.li} hidden={!state.notes}>
+                    <span className={classes.infoTitle} style={{width:"60px"}}> Notes: </span>
+                    <span className={classes.infoData} style={{fontWeight:"500"}}>
+                      {" "}
+                      {state.notes || "-"}{" "}
                     </span>
                   </li>
 
-                  <li className={classes.li} hidden={!state.packagePrice}>
+
+                  <li className={classes.li} hidden={!state.totalPrice}>
                     <span className={classes.infoTitleTime}>
                       <FontAwesomeIcon
                         icon={faPoundSign}
@@ -371,9 +404,9 @@ export default function ReviewForm() {
                       />
                       Estimated Price:
                     </span>
-                    <span className={classes.infoData}>
+                    <span className={classes.infoData} style={{color:"#dc2626", fontWeight:"500"}}>
                       {" "}
-                      {state.packagePrice || "-"}{" "}
+                      {state.totalPrice  ? state.totalPrice  : '-'}
                     </span>
                   </li>
 
@@ -409,13 +442,6 @@ export default function ReviewForm() {
                     </span>
                   </li>
 
-                  <li className={classes.li}>
-                    <span className={classes.infoTitle}>Notes</span>
-                    <span className={classes.infoData}>
-                      {" "}
-                      {state.notes || "-"}{" "}
-                    </span>
-                  </li>
                 </ul>
               </div>
             </Grid>

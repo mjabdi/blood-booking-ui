@@ -8,6 +8,7 @@ import Checkbox from "@material-ui/core/Checkbox";
 import GlobalState from "./GlobalState";
 import PersonsBox from "./PersonsBox";
 import AntiBodyComponent from "./AntiBodyComponent";
+import Chip from "@material-ui/core/Chip";
 import {
   Button,
   DialogActions,
@@ -28,6 +29,16 @@ import CloseIcon from "@material-ui/icons/Close";
 import CheckIcon from "@material-ui/icons/Check";
 import CheckCircleRoundedIcon from "@material-ui/icons/CheckCircleRounded";
 
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import CheckBoxOutlineBlankIcon from "@material-ui/icons/CheckBoxOutlineBlank";
+import CheckBoxIcon from "@material-ui/icons/CheckBox";
+import BookService from "./services/BookService";
+
+import {matchSorter} from 'match-sorter'
+
+const icon = <CheckBoxOutlineBlankIcon fontSize="small" />;
+const checkedIcon = <CheckBoxIcon fontSize="small" />;
+
 const useStyles = makeStyles((theme) => ({
   formControl: {
     textAlign: "justify",
@@ -40,14 +51,14 @@ const useStyles = makeStyles((theme) => ({
 
   packageBox: {
     border: "2px solid",
-    borderRadius: "4px",
+    borderRadius: "15px",
     width: "100%",
     padding: "20px 5px",
 
     transition: "all 0.4s ease-in-out",
     boxShadow: " 0 0 10px rgb(0 0 0 / 20%)",
     [theme.breakpoints.up("sm")]: {
-      minHeight: "200px",
+      minHeight: "180px",
     },
 
     cursor: "pointer",
@@ -63,8 +74,8 @@ export const Packages = [
   {
     packageName: "SLIVER BLOOD TEST",
     title: "SLIVER BLOOD TEST",
-    malePrice: "£85.00",
-    femalePrice: "£85.00",
+    malePrice: "£105.00",
+    femalePrice: "£105.00",
     color: "#aaa",
     descriptions: [
       "Kidney Function",
@@ -83,8 +94,8 @@ export const Packages = [
   {
     packageName: "SLIVER PLUS BLOOD TEST",
     title: "SLIVER PLUS BLOOD TEST",
-    malePrice: "£155.00",
-    femalePrice: "£155.00",
+    malePrice: "£195.00",
+    femalePrice: "£195.00",
     color: "#00a1c5",
     descriptions: [
       "Kidney Function",
@@ -105,8 +116,8 @@ export const Packages = [
   {
     packageName: "GOLD BLOOD TEST",
     title: "GOLD BLOOD TEST",
-    malePrice: "£210.00",
-    femalePrice: "£210.00",
+    malePrice: "£250.00",
+    femalePrice: "£250.00",
     color: "#ff7a11",
     descriptions: [
       "Kidney Function",
@@ -131,8 +142,8 @@ export const Packages = [
   {
     packageName: "PLATINIUM BLOOD TEST",
     title: "PLATINIUM BLOOD TEST",
-    malePrice: "£390.00",
-    femalePrice: "£390.00",
+    malePrice: "£420.00",
+    femalePrice: "£420.00",
     color: "#333",
     descriptions: [
       "Kidney Function",
@@ -243,123 +254,69 @@ export default function PackageForm() {
   const classes = useStyles();
   const [state, setState] = React.useContext(GlobalState);
 
+  const [allCodes, setAllCodes] = React.useState([]);
+
+  const [indivisualTests, setIndivisualTests] = React.useState(state.indivisualTests? state.indivisualTests : [])
+
   const [packageName, setPackageName] = React.useState(state.packageName || "");
   const [packagePrice, setPackagePrice] = React.useState(
     state.packagePrice || 0
   );
 
-  const [notes, setNotes] = React.useState(
-    state.packageName && state.packageName.indexOf("(Blood Test)") > 0
-      ? state.packageName.substr(
-          0,
-          state.packageName.indexOf("(Blood Test)") - 1
-        )
-      : ""
-  );
+  const [notes, setNotes] = React.useState(state.notes || '')
 
   const notesChanged = (event) => {
     setNotes(event.target.value);
+    setState((state) => ({ ...state, notes: event.target.value }));
+  };
 
-    if (event.target.value && event.target.value.length > 0) {
-      const _packageName = `${event.target.value} (Blood Test)`;
-      const price = 0;
+  const fetchAllCodes = async () => {
+    try {
+      const res = await BookService.getAllCodes();
+      const data = res.data.result
+      const options = data.map((option) => {
+        const firstLetter = option.code[0].toUpperCase();
+        return {
+          firstLetter: /[0-9]/.test(firstLetter) ? '0-9' : firstLetter,
+          ...option,
+        };
+      });
+
+
+      setAllCodes(options);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+    fetchAllCodes();
+  }, []);
+
+  const packageClicked = (_packageName, price) => {
+
+    if (_packageName !== packageName)
+    {
       setPackageName(`${_packageName}`);
-      setPackagePrice({ ...state, packagePrice: price });
-
+      setPackagePrice(price);
       setState((state) => ({
         ...state,
         packageName: `${_packageName}`,
         packagePrice: price,
       }));
-    }
-
-    // setState((state) => ({ ...state, notes: event.target.value }));
-    // setState((state) => ({ ...state, notesError: false }));
-  };
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
-
-  const packageClicked = (_packageName, price) => {
-    setPackageName(`${_packageName}`);
-    setPackagePrice({ ...state, packagePrice: price });
-
-    setNotes("");
-
-    setState((state) => ({
-      ...state,
-      packageName: `${_packageName}`,
-      packagePrice: price,
-    }));
-  };
-
-  const package2Clicked = (_packageName, price) => {
-    setPackageName(`${_packageName}`);
-    setPackagePrice({ ...state, packagePrice: price });
-
-    setState((state) => ({
-      ...state,
-      packageName: `${_packageName}`,
-      packagePrice: price,
-    }));
-  };
-
-  const indivisualClicked = (checked, _packageName, price) => {
-    if (checked) {
-      setPackageName(`Indivisual Tests`);
-      setPackagePrice({ ...state, packagePrice: 0 });
+    }else
+    {
+      setPackageName('');
+      setPackagePrice('');
       setState((state) => ({
         ...state,
-        packageName: `Indivisual Tests`,
-        packagePrice: 0,
-      }));
-
-      const _temp = state.indivisualTests;
-      if (_temp.findIndex((e) => e.packageName === _packageName) < 0) {
-        _temp.push({
-          packageName: _packageName,
-          price: price,
-        });
-      }
-
-      setState((state) => ({ ...state, indivisualTests: _temp }));
-    } else {
-      setState((state) => ({
-        ...state,
-        indivisualTests: state.indivisualTests.filter(
-          (e) => e.packageName !== _packageName
-        ),
+        packageName: '',
+        packagePrice: '',
       }));
     }
-  };
 
-  const indivisualComboClicked = (checked, _packageName, price) => {
-    if (checked) {
-      setPackageName(`Combo STD Checks`);
-      setPackagePrice({ ...state, packagePrice: 0 });
-      setState((state) => ({
-        ...state,
-        packageName: `Combo STD Checks`,
-        packagePrice: 0,
-      }));
 
-      const _temp = state.indivisualCombos;
-      if (_temp.findIndex((e) => e.packageName === _packageName) < 0) {
-        _temp.push({
-          packageName: _packageName,
-          price: price,
-        });
-      }
-      setState((state) => ({ ...state, indivisualCombos: _temp }));
-    } else {
-      setState((state) => ({
-        ...state,
-        indivisualCombos: state.indivisualCombos.filter(
-          (e) => e.packageName !== _packageName
-        ),
-      }));
-    }
   };
 
   const [infoItem, setInfoItem] = React.useState(null);
@@ -373,6 +330,9 @@ export default function PackageForm() {
     setInfoItem(item);
     setShowInfoDialog(true);
   };
+
+  const filterOptions = (options, { inputValue }) =>
+           matchSorter(options, inputValue, {keys: ['code', 'description']});
 
   return (
     <React.Fragment>
@@ -392,7 +352,7 @@ export default function PackageForm() {
           style={{
             textAlign: "center",
             fontSize: "1.2rem",
-            fontWeight: "500",
+            fontWeight: "600",
             color: "#777",
             marginBottom: "20px",
           }}
@@ -407,7 +367,7 @@ export default function PackageForm() {
           style={{ marginTop: "10px" }}
         >
           {Packages.map((item) => (
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={6} sm={3}>
               <div
                 className={classes.packageBox}
                 style={
@@ -434,7 +394,7 @@ export default function PackageForm() {
                     style={{ width: "97%" }}
                   >
                     <Grid item xs={12}>
-                      <div style={{ fontWeight: "500", fontSize: "1.2rem" }}>
+                      <div style={{ fontWeight: "500", fontSize: "1rem" }}>
                         {item.title}
                       </div>
                     </Grid>
@@ -444,9 +404,9 @@ export default function PackageForm() {
                         {item.malePrice === item.femalePrice && (
                           <div
                             style={{
-                              fontSize: "1.5rem",
-                              marginTop: "15px",
-                              marginBottom: "25px",
+                              fontSize: "1rem",
+                              marginTop: "10px",
+                              marginBottom: "15px",
                               fontWeight: "600",
                             }}
                           >
@@ -490,7 +450,7 @@ export default function PackageForm() {
                       </div>
                     </Grid>
 
-                    <Grid item xs={12} md={12}>
+                    {/* <Grid item xs={12} md={12}>
                       <Button
                         fullWidth
                         variant="contained"
@@ -500,17 +460,29 @@ export default function PackageForm() {
                       >
                         Select
                       </Button>
-                    </Grid>
+                    </Grid> */}
                   </div>
 
                   <Grid item xs={12} md={12} style={{ marginTop: "10px" }}>
                     <Button
                       fullWidth
                       variant="contained"
+                      color="default"
                       onClick={() => showMoreInfoDialog(item)}
                     >
-                      More Info
+                      <span
+                        style={{ fontSize: "0.8rem", textTransform: "none" }}
+                      >
+                        {" "}
+                        Find out more
+                      </span>
                     </Button>
+                    {/* <div style={{color:"#fff", backgroundColor:item.color, borderRadius:"15px", width:"80%", padding:"5px"}}  
+                      onClick={() =>
+                          packageClicked(item.packageName, `${item.malePrice}`)
+                        }>
+                      Find out more
+                    </div> */}
                   </Grid>
                 </Grid>
               </div>
@@ -521,14 +493,111 @@ export default function PackageForm() {
             style={{
               textAlign: "center",
               width: "100%",
-              fontSize: "1.2rem",
-              fontWeight: "600",
-              color: "#333",
-              marginBottom: "20px",
-              marginTop: "20px",
+              fontSize: "1rem",
+              fontWeight: "500",
+              color: "#777",
+              marginBottom: "10px",
+              marginTop: "30px",
             }}
           >
-            Looking for a specific blood test? Write to us below.
+            Looking for a specific blood test? Search through over 1,000 blood tests we offer at our clinic below :
+          </div>
+
+          <div
+            style={{
+              textAlign: "center",
+              width: "100%",
+              fontWeight: "400",
+              color: "#777",
+            }}
+          >
+            <Autocomplete
+              multiple
+              id="tags-outlined"
+              value={indivisualTests}
+              onChange={(event, newValue) => {
+                 setIndivisualTests(newValue)
+                 setState(state => ({...state, indivisualTests: newValue}))
+              }}
+              filterOptions={filterOptions} 
+              options={allCodes.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
+              groupBy={(option) => option.firstLetter}
+              getOptionLabel={(option) =>
+                `${option.code} - ${option.description} - ${parseFloat(
+                  option.price
+                ).toLocaleString("en-GB", {
+                  style: "currency",
+                  currency: "GBP",
+                })}`
+              }
+              renderTags={(value, getTagProps) =>
+                value.map((option, index) => (
+                  <Chip
+                    variant="outlined"
+                    color="primary"
+                    label={
+                      <Typography
+                        style={{
+                          whiteSpace: "normal",
+                          fontSize: "0.9rem",
+                          fontWeight: "500",
+                          padding: "10px",
+                          width: "100%",
+                        }}
+                      >
+                        {`${option.code} - ${option.description} - ${parseFloat(
+                          option.price
+                        ).toLocaleString("en-GB", {
+                          style: "currency",
+                          currency: "GBP",
+                        })}`}
+                      </Typography>
+                    }
+                    {...getTagProps({ index })}
+                    style={{ height: "100%", width: "100%" }}
+                  />
+                  // <Chip variant="outlined" color="primary"  label={option} style={{width:"100%", fontWeight:"500"}} {...getTagProps({ index })} />
+                ))
+              }
+              filterSelectedOptions
+              renderInput={(params) => (
+                <TextField
+                  fullWidth
+                  {...params}
+                  variant="outlined"
+                  label="Blood Tests"
+                  placeholder="Enter blood test"
+                />
+              )}
+            />
+
+            {/* <TextField
+              style={{ marginTop: "10px" }}
+              id="notes"
+              // error={state.notesError && state.package === "Others"}
+              fullWidth
+              // required={state.package === "Others"}
+              label=""
+              value={notes}
+              onChange={notesChanged}
+              placeholder="Enter blood test"
+              variant="outlined"
+            /> */}
+          </div>
+
+
+          <div
+            style={{
+              textAlign: "center",
+              width: "100%",
+              fontSize: "1rem",
+              fontWeight: "500",
+              color: "#777",
+              marginBottom: "0px",
+              marginTop: "30px",
+            }}
+          >
+            Couldn't find your blood test in the list? Write to us below :
           </div>
 
           <div
@@ -545,13 +614,20 @@ export default function PackageForm() {
               // error={state.notesError && state.package === "Others"}
               fullWidth
               // required={state.package === "Others"}
-              label=""
+              label="Notes"
               value={notes}
+              autoComplete="none"
               onChange={notesChanged}
-              placeholder="Enter blood test"
+              placeholder="Enter your notes"
               variant="outlined"
             />
           </div>
+
+
+          <div style={{marginTop:"30px", fontWeight:"500"}}> 
+          * A blood draw fee of <span style={{color:"#dc2626", fontWeight:"600"}}>£50</span> is payable blood tests, urine tests and swabs carry no surcharge.
+          </div>
+
         </Grid>
       </div>
 
