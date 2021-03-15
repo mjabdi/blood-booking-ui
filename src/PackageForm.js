@@ -68,6 +68,15 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.main,
     marginBottom: "15px",
   },
+
+  listOptions:{
+    backgroundColor: theme.palette.primary.light,
+    color: "#000",
+    borderRadius:"30px",
+    padding: "10px",
+    fontWeight:"500",
+    fontSize: "1rem"
+  }
 }));
 
 export const Packages = [
@@ -254,9 +263,13 @@ export default function PackageForm() {
   const classes = useStyles();
   const [state, setState] = React.useContext(GlobalState);
 
+  const searchRef = React.useRef(null)
+
   const [allCodes, setAllCodes] = React.useState([]);
 
   const [indivisualTests, setIndivisualTests] = React.useState(state.indivisualTests? state.indivisualTests : [])
+
+  const [noOptionsText, setNoOptionsText] = React.useState('')
 
   const [packageName, setPackageName] = React.useState(state.packageName || "");
   const [packagePrice, setPackagePrice] = React.useState(
@@ -331,8 +344,22 @@ export default function PackageForm() {
     setShowInfoDialog(true);
   };
 
-  const filterOptions = (options, { inputValue }) =>
-           matchSorter(options, inputValue, {keys: ['code', 'description']});
+  const filterOptions = (options, { inputValue }) => {
+
+    if (inputValue && inputValue.length >= 2)
+    {
+      setNoOptionsText("")
+      return matchSorter(options, inputValue, {keys: ['code', 'description']});
+    }
+    else
+    {
+      setNoOptionsText("lease enter at least 2 characters")
+      return matchSorter(options, '$$$$', {keys: ['code', 'description']});
+    }
+
+  
+
+  }
 
   return (
     <React.Fragment>
@@ -512,8 +539,11 @@ export default function PackageForm() {
             }}
           >
             <Autocomplete
+              ref={searchRef}
+              onFocus={() => searchRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' })}
               multiple
               id="tags-outlined"
+              noOptionsText={noOptionsText}
               value={indivisualTests}
               onChange={(event, newValue) => {
                  setIndivisualTests(newValue)
@@ -521,14 +551,14 @@ export default function PackageForm() {
               }}
               filterOptions={filterOptions} 
               options={allCodes.sort((a, b) => -b.firstLetter.localeCompare(a.firstLetter))}
-              groupBy={(option) => option.firstLetter}
-              getOptionLabel={(option) =>
-                `${option.code} - ${option.description} - ${parseFloat(
+              // groupBy={(option) => option.firstLetter}
+              getOptionLabel={(option) => <div className={classes.listOptions}>
+                {option.code} - {option.description} - {parseFloat(
                   option.price
                 ).toLocaleString("en-GB", {
                   style: "currency",
                   currency: "GBP",
-                })}`
+                })}</div>
               }
               renderTags={(value, getTagProps) =>
                 value.map((option, index) => (

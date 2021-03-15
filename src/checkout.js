@@ -72,10 +72,12 @@ const useStyles = makeStyles((theme) => ({
     width: "auto",
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
+    marginBottom: "300px",
     [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
       width: 700,
       marginLeft: "auto",
       marginRight: "auto",
+      marginBottom: theme.spacing(2),
     },
   },
   paper: {
