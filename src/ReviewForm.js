@@ -447,8 +447,13 @@ export default function ReviewForm() {
             </Grid>
           </div>
         </Fade>
+
+        <div style={{textAlign:"left", fontWeight:"500", fontSize:"0.9rem", padding:"10px", border:"1px solid #999",borderRadius:"8px" , lineHeight:"1.5rem", backgroundColor:"#eee", marginTop:"20px"}}>
+        A blood draw fee of <span  className={classes.link} style={{fontWeight:"700"}}>£50</span> is payable for blood tests, urine tests and swabs and blood packages carry no surcharge.
+        </div>
+
         <div className={classes.terms}>
-          By clicking on "SUBMIT" button you are agreeing with our{" "}
+          By clicking on the "SUBMIT" button you are agreeing with our{" "}
           <a
             className={classes.link}
             target="_blank"
@@ -457,6 +462,7 @@ export default function ReviewForm() {
             terms and condition.
           </a>
         </div>
+
 
         {/* <div style={{textAlign:"left", color: "#111", marginLeft:"10px"}}>
 <FormControlLabel className={classes.formControl}  style={ {color: state.dataConfirmedError ? "red" : ''}} 

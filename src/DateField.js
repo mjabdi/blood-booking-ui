@@ -138,7 +138,7 @@ const DateField = ({title, value, dateChanged, error}) => {
         >
 
 
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} sm={4}>
                 <FormControl fullWidth>
                     <InputLabel  id="day-label">Day</InputLabel>
                     <Select
@@ -159,7 +159,7 @@ const DateField = ({title, value, dateChanged, error}) => {
 
             </Grid>
 
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} sm={4}>
                 <FormControl fullWidth>
                     <InputLabel  id="month-label">Month</InputLabel>
                     <Select
@@ -179,7 +179,7 @@ const DateField = ({title, value, dateChanged, error}) => {
                 
             </Grid>
 
-            <Grid item xs={12} md={4}>
+            <Grid item xs={12} sm={4}>
                 <FormControl fullWidth>
                     <InputLabel  id="day-label">Year</InputLabel>
                     <Select

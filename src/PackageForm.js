@@ -346,14 +346,14 @@ export default function PackageForm() {
 
   const filterOptions = (options, { inputValue }) => {
 
-    if (inputValue && inputValue.length >= 2)
+    if (inputValue && inputValue.length >= 3)
     {
       setNoOptionsText("")
       return matchSorter(options, inputValue, {keys: ['code', 'description']});
     }
     else
     {
-      setNoOptionsText("lease enter at least 2 characters")
+      setNoOptionsText("Please enter at least 3 characters")
       return matchSorter(options, '$$$$', {keys: ['code', 'description']});
     }
 
