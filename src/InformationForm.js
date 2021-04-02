@@ -141,6 +141,21 @@ export default function InformationForm() {
     }
   };
 
+  const checkNOGPClicked = (event) =>
+  {
+    setState(state=>({...state,check_nogp: event.target.checked}))
+    if (event.target.checked)
+    {
+      setState(state=>({...state,check_nogp_error:false}))
+    }
+  }
+
+  const checkWithGPClicked = (event) =>
+  {
+    setState(state=>({...state,check_withgp: event.target.checked}))
+  }
+
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom className={classes.pageTitle}>
@@ -203,6 +218,30 @@ export default function InformationForm() {
 
              </DateField>
         </Grid>
+
+        <Grid item xs={12} >
+
+          <FormControlLabel style={{textAlign:"justify"}}
+            control={<Checkbox color="primary" name="check1" checked={state.check_nogp} onChange={(event => checkNOGPClicked(event))} />}
+            label={<span style={{ fontSize: '0.9rem', fontWeight:"500", color: state.check_nogp_error ? "red" : "#555" }}>{`I am requesting these tests on a self-referral basis, and am aware that the results of my test cannot be interpreted by Medical Express Clinic without undergoing a full consultation with the doctor.`}
+            </span>}
+          />
+        </Grid>
+
+        <Grid item xs={12}>
+        <div style={{ textAlign: "left", fontWeight: "500", fontSize: "0.9rem", padding: "10px", border: "1px solid #999", borderRadius: "8px", lineHeight: "1.5rem", backgroundColor: "#eee", marginTop: "0px" }}>
+
+        <FormControlLabel style={{textAlign:"justify"}}
+            control={<Checkbox color="primary" name="check1" checked={state.check_withgp} onChange={(event => checkWithGPClicked(event))} />}
+            label={<span style={{ fontSize: '1rem' }}>Add Full Doctor Consultation - <span style={{fontWeight:"700"}}> £150</span> 
+            </span>}
+          />
+
+
+        </div>
+
+        </Grid>
+
 
 
       </Grid>

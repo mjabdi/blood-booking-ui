@@ -55,6 +55,13 @@ export default function ValidateStep (state,setState, step, hasPackage)
         setState(state => ({...state, birthDateError : true}));
         error = true;
       }
+
+      if (!state.check_nogp)
+      {
+        setState(state => ({...state, check_nogp_error : true}));
+        error = true;
+      }
+
     }
 
       return !error;   

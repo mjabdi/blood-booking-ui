@@ -246,6 +246,10 @@ export default function ReviewForm() {
       price += parseFloat(state.packagePrice.substr(1))
     }
 
+    if (state.check_withgp)
+    {
+      price += 150;
+    }
 
     setState((state) => ({
       ...state,
@@ -395,6 +399,11 @@ export default function ReviewForm() {
                     </span>
                   </li>
 
+                  <li className={classes.li} hidden={!state.check_withgp}>
+                    <span className={classes.infoData} style={{fontWeight:"700"}}>
+                      + Full Doctor Consultation - £150
+                    </span>
+                  </li>
 
                   <li className={classes.li} hidden={!state.totalPrice}>
                     <span className={classes.infoTitleTime}>
@@ -448,8 +457,8 @@ export default function ReviewForm() {
           </div>
         </Fade>
 
-        <div style={{textAlign:"left", fontWeight:"500", fontSize:"0.9rem", padding:"10px", border:"1px solid #999",borderRadius:"8px" , lineHeight:"1.5rem", backgroundColor:"#eee", marginTop:"20px"}}>
-        A blood draw fee of <span  className={classes.link} style={{fontWeight:"700"}}>£50</span> is payable for blood tests, urine tests and swabs and blood packages carry no surcharge.
+        <div style={{ textAlign: "left", fontWeight: "500", fontSize: "0.9rem", padding: "10px", border: "1px solid #999", borderRadius: "8px", lineHeight: "1.5rem", backgroundColor: "#eee", marginTop: "20px" }}>
+          A blood draw fee of <span className={classes.link} style={{ fontWeight: "700" }}>£50</span> is payable for blood tests, urine tests and swabs and blood packages carry no surcharge.
         </div>
 
         <div className={classes.terms}>

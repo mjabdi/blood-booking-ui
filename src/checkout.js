@@ -278,7 +278,8 @@ export default function Checkout() {
           notes: state.notes || '',
           packageName : state.packageName,
           indivisualTests: state.indivisualTests && state.indivisualTests.length > 0 ? JSON.stringify(state.indivisualTests) : null,
-          estimatedPrice: state.totalPrice || ''
+          estimatedPrice: state.totalPrice || '',
+          doctorConsultation : state.check_withgp || false
         };
 
         const promise = BookService.bookAppointment({
