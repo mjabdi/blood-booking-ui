@@ -257,7 +257,7 @@ export default function AgreementForm() {
 
 
 const getAgreeClicked = (event) => {
-    if (check.check1 && check.check2 && check.check3 && check.check4)
+    if (check.check1 && check.check2 && check.check3 && check.check4 && check.check5)
     {
         setState(state => ({...state, agreed: true}));
     }
@@ -268,7 +268,7 @@ const getAgreeClicked = (event) => {
 }
 
 useEffect( () => {
-  if (check.check1 && check.check2 && check.check3 && check.check4)
+  if (check.check1 && check.check2 && check.check3 && check.check4 && check.check5)
   {
     setError(false);
   }
@@ -353,14 +353,14 @@ useEffect( () => {
                             />
                     </Grid>
 
-                    {/* <Grid item xs={12}  >
+                    <Grid item xs={12}  >
 
                         <FormControlLabel style={{ fontSize: '1rem', textAlign:"justify" }}
-                                    control={<Checkbox color="secondary" name="check5" checked={check.check5} onChange={(event => checkClicked(event,5))}  />}
-                                    label={<span style={{ fontSize: '1rem', textAlign:"left" }}>{`I confirm that this appointment is for a Fit to Fly PCR Test, not for the Test to Release scheme.`} 
+                                    control={<Checkbox color="primary" name="check5" checked={check.check5} onChange={(event => checkClicked(event,5))}  />}
+                                    label={<span style={{ fontSize: '1rem', textAlign:"left" }}>{`I am making an appointment for a blood test on a self-request basis. I am aware that I will receive the laboratory report for the selected test and I consent for test results to be emailed to my booking email address without any comment from the doctor.`} 
                                     </span>}
                                 />
-                        </Grid> */}
+                        </Grid>
 
                 </Grid>
 
