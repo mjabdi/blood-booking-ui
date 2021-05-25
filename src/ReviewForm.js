@@ -458,7 +458,7 @@ export default function ReviewForm() {
         </Fade>
 
         <div style={{ textAlign: "left", fontWeight: "500", fontSize: "0.9rem", padding: "10px", border: "1px solid #999", borderRadius: "8px", lineHeight: "1.5rem", backgroundColor: "#eee", marginTop: "20px" }}>
-          A blood draw fee of <span className={classes.link} style={{ fontWeight: "700" }}>£50</span> is payable for blood tests, urine tests and swabs and blood packages carry no surcharge.
+          A blood draw fee of <span className={classes.link} style={{ fontWeight: "700" }}>£50</span> is payable for blood tests. Urine tests, swab tests and full sexual health packages carry no surcharge.
         </div>
 
         <div className={classes.terms}>

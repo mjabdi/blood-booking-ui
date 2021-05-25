@@ -357,7 +357,10 @@ useEffect( () => {
 
                         <FormControlLabel style={{ fontSize: '1rem', textAlign:"justify" }}
                                     control={<Checkbox color="primary" name="check5" checked={check.check5} onChange={(event => checkClicked(event,5))}  />}
-                                    label={<span style={{ fontSize: '1rem', textAlign:"left" }}>{`I am making an appointment for a blood test on a self-request basis. I am aware that I will receive the laboratory report for the selected test and I consent for test results to be emailed to my booking email address without any comment from the doctor.`} 
+                                    label={<span style={{ fontSize: '1rem', textAlign:"left" }}>
+                                      {
+                                      `I am making an appointment for a blood test on a self-request basis. I am aware that I will receive the laboratory report for the selected test only and I consent for test results to be emailed to my booking email address without any review, comment, interpretation or advice from the doctor or the clinic.`
+                                      } 
                                     </span>}
                                 />
                         </Grid>

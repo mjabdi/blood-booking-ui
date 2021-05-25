@@ -654,8 +654,8 @@ export default function PackageForm() {
           </div>
 
 
-          <div style={{marginTop:"30px", fontWeight:"500"}}> 
-          * A blood draw fee of <span style={{color:"#dc2626", fontWeight:"600"}}>£50</span> is payable blood tests, urine tests and swabs carry no surcharge.
+          <div style={{marginTop:"30px", fontWeight:"500", textAlign:"left"}}> 
+          * A blood draw fee of <span style={{color:"#dc2626", fontWeight:"600"}}>£50</span> is payable blood tests. Urine tests, swab tests and full sexual health packages carry no surcharge.
           </div>
 
         </Grid>

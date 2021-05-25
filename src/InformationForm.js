@@ -223,7 +223,10 @@ export default function InformationForm() {
 
           <FormControlLabel style={{textAlign:"justify"}}
             control={<Checkbox color="primary" name="check1" checked={state.check_nogp} onChange={(event => checkNOGPClicked(event))} />}
-            label={<span style={{ fontSize: '0.9rem', fontWeight:"500", color: state.check_nogp_error ? "red" : "#555" }}>{`I am requesting these tests on a self-referral basis, and am aware that the results of my test cannot be interpreted by Medical Express Clinic without undergoing a full consultation with the doctor.`}
+            label={<span style={{ fontSize: '0.9rem', fontWeight:"500", color: state.check_nogp_error ? "red" : "#555" }}>
+              {
+              `I am making an appointment for a blood test on a self-request basis. I am aware that I will receive the laboratory report for the selected test only and I consent for test results to be emailed to my booking email address without any review, comment, interpretation or advice from the doctor or the clinic.`
+              }
             </span>}
           />
         </Grid>
