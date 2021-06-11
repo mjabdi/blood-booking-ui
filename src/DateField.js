@@ -115,6 +115,14 @@ const DateField = ({title, value, dateChanged, error}) => {
         setYearArray(years);
 
       } , [])
+
+
+      const handleYearClicked = (event) => {
+          if (!year)
+          {
+              setYear(2000)
+          }
+      }
     
   return (
 
@@ -138,7 +146,7 @@ const DateField = ({title, value, dateChanged, error}) => {
         >
 
 
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} md={4}>
                 <FormControl fullWidth>
                     <InputLabel  id="day-label">Day</InputLabel>
                     <Select
@@ -159,7 +167,7 @@ const DateField = ({title, value, dateChanged, error}) => {
 
             </Grid>
 
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} md={4}>
                 <FormControl fullWidth>
                     <InputLabel  id="month-label">Month</InputLabel>
                     <Select
@@ -179,7 +187,7 @@ const DateField = ({title, value, dateChanged, error}) => {
                 
             </Grid>
 
-            <Grid item xs={12} sm={4}>
+            <Grid item xs={12} md={4}>
                 <FormControl fullWidth>
                     <InputLabel  id="day-label">Year</InputLabel>
                     <Select
@@ -187,12 +195,14 @@ const DateField = ({title, value, dateChanged, error}) => {
                     id="year-select"
                     value={year}
                     onChange={handleYearChanged}
+                    onFocus={handleYearClicked}
                     >
                     {
                         yearArray.map( item => (
                             <MenuItem value={item}>{item}</MenuItem>
                         )
                     )} 
+                
                     </Select>
                 </FormControl>
             </Grid>
