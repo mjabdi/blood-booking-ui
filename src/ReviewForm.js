@@ -288,6 +288,21 @@ export default function ReviewForm() {
             have entered your email address in the previous step) */}
           </Alert>
         </div>
+
+        <div>
+          <Alert
+            severity="error"
+            style={{
+              marginBottom: "15px",
+              fontSize: "0.95rem",
+              lineHeight: "1.5rem",
+              textAlign: "justify",
+            }}
+          >
+           Please note that this testing service is not designed for clinically urgent cases as blood samples are referred to an external laboratory for analysis. Turnaround times listed on the website should be treated as a guidelines to when patients should expect to receive results. Clinically urgent blood tests should only be ordered under the care of a registered medical practitioner, not on a self-request basis.
+          </Alert>
+        </div>
+
       </Fade>
 
       <Grid
