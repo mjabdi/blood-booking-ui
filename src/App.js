@@ -19,7 +19,7 @@ function App() {
   const [state, setState] = React.useState({activeStep : 0, bookingDate: null, persons: [], indivisualTests: [], indivisualCombos: []});
 
   useEffect(() => {
-    
+
    const packageName = getPackageName()
    if (packageName && packageName.length > 0)
    {
