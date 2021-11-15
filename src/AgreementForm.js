@@ -257,14 +257,17 @@ export default function AgreementForm() {
 
 
 const getAgreeClicked = (event) => {
-    if (check.check1 && check.check2 && check.check3 && check.check4 && check.check5)
-    {
-        setState(state => ({...state, agreed: true}));
-    }
-    else
-    {
-        setError(true);
-    }
+
+  setState(state => ({...state, agreed: true}));
+
+    // if (check.check1 && check.check2 && check.check3 && check.check4 && check.check5)
+    // {
+    //     setState(state => ({...state, agreed: true}));
+    // }
+    // else
+    // {
+    //     setError(true);
+    // }
 }
 
 useEffect( () => {
@@ -313,8 +316,29 @@ useEffect( () => {
               Patients wishing to book an appointment must confirm that:
           </Typography>
 
+          <ul style={{fontSize:"1.1rem", color:"#333", textAlign:"left"}}>
+              <li style={{marginTop:"15px"}}>
+                {`I do not have a fever`}
+              </li>
+              <li style={{marginTop:"15px"}}>
+                {`I do not have a new, continuous cough`}
+              </li>
 
-                <Grid container  direction="column"  justify="flex-start" alignItems="flex-start" spacing={3}>
+              <li style={{marginTop:"15px"}}>
+                {`I do not have shortness of breath`}
+              </li>
+              <li style={{marginTop:"15px"}}>
+                {`I have not been in contact with someone suspected or known to have coronavirus`}
+            </li>
+            <li style={{ marginTop: "15px" }}>
+              {
+                `I am making an appointment for a blood test on a self-request basis. I am aware that I will receive the laboratory report for the selected test only and I consent for test results to be emailed to my booking email address without any review, comment, interpretation or advice from the doctor or the clinic.`
+              }
+            </li>
+          </ul>
+
+
+                {/* <Grid container  direction="column"  justify="flex-start" alignItems="flex-start" spacing={3}>
 
                 <Grid item xs={12}  >
 
@@ -365,7 +389,7 @@ useEffect( () => {
                                 />
                         </Grid>
 
-                </Grid>
+                </Grid> */}
 
              
 
@@ -382,7 +406,7 @@ useEffect( () => {
             )}
             
 
-        <Button 
+        {/* <Button 
                 // variant="contained" 
                 className={classes.getStartedButton} 
                 style = {{marginRight : "20px"}}
@@ -391,7 +415,7 @@ useEffect( () => {
                 onTouchTap={backButtonClicked} 
                 >
         Back
-        </Button>
+        </Button> */}
 
           <Button 
                   variant="contained" 

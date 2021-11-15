@@ -16,10 +16,13 @@ const getPackageName = () =>
 }
 
 function App() {
-  const [state, setState] = React.useState({activeStep : 0, bookingDate: null, persons: [], indivisualTests: [], indivisualCombos: []});
+  const [state, setState] = React.useState({activeStep : 0, bookingDate: null, persons: [], indivisualTests: [], indivisualCombos: [], getStarted: true});
+
+
 
   useEffect(() => {
 
+   
    const packageName = getPackageName()
    if (packageName && packageName.length > 0)
    {
