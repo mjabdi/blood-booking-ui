@@ -83,8 +83,8 @@ export const Packages = [
   {
     packageName: "SLIVER BLOOD TEST",
     title: "SLIVER BLOOD TEST",
-    malePrice: "£105.00",
-    femalePrice: "£105.00",
+    malePrice: "£107.00",
+    femalePrice: "£107.00",
     color: "#aaa",
     descriptions: [
       "Kidney Function",
