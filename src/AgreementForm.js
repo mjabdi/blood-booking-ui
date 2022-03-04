@@ -332,8 +332,11 @@ useEffect( () => {
             </li>
             <li style={{ marginTop: "15px" }}>
               {
-                `I am making an appointment for a blood test on a self-request basis. I am aware that I will receive the laboratory report for the selected test only and I consent for test results to be emailed to my booking email address without any review, comment, interpretation or advice from the doctor or the clinic.`
+                `I am making an appointment for a blood test on a self-request basis. I am aware that the clinic will simply run the test that I have requested and that I will receive the laboratory report for the selected test only.`
               }
+            </li>
+            <li style={{marginTop:"15px"}}>
+                {`I consent for test results to be emailed to my booking email address without any review, comment, interpretation or advice from the doctor or the clinic.`}
             </li>
           </ul>
 
@@ -398,7 +401,7 @@ useEffect( () => {
                
 
             <p className={isMobile ? classes.textContentMobile : classes.textContent}>
-                 If you cannot confirm all the points stated above, you must not proceed any further and must self-isolate for the next 14 days. Please click the box to agree to these terms.
+            If you cannot confirm all the points stated above, you must not proceed any further and must self-isolate for the next 14 days. Please click the box to agree to these terms.
             </p>
 
             {error && (
