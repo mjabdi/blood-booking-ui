@@ -331,9 +331,9 @@ useEffect( () => {
                 {`I have not been in contact with someone suspected or known to have coronavirus`}
             </li>
             <li style={{ marginTop: "15px" }}>
-              {
-                `I am making an appointment for a blood test on a self-request basis. I am aware that the clinic will simply run the test that I have requested and that I will receive the laboratory report for the selected test only.`
-              }
+              
+                I am making an appointment for a  <span style={{fontWeight:"700"}}>diagnostic</span> test on a self-request basis. I am aware that the clinic will simply run the test that I have requested and that I will receive the laboratory report for the selected test only.
+              
             </li>
             <li style={{marginTop:"15px"}}>
                 {`I consent for test results to be emailed to my booking email address without any review, comment, interpretation or advice from the doctor or the clinic.`}
