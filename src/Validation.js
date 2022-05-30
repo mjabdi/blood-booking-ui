@@ -25,7 +25,9 @@ export default function ValidateStep (state,setState, step, hasPackage)
       // validate Package
       if ((!state.packageName || state.packageName.length < 1) && (!state.indivisualTests || state.indivisualTests.length === 0) && (!state.notes || state.notes.trim().length === 0))
       {
-        error = true;
+
+        setState(state => ({...state, notes : "Blood Tests"}));
+        // error = true;
       }
 
 

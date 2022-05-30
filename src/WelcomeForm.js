@@ -409,13 +409,13 @@ const getStartedClicked = (event) => {
                   Medical records are kept confidentially and securely under lock and key or securely on our server. They are primarily used for the safe and effective delivery of care.
                 </p>  
                 <p>
-                  Your medical record may be subject to clinical audit and management review in order for Medical Express Clinic to maintain and improve our provision of care.
+                  Your medical record may be subject to clinical audit and management review in order for Medical Express Clinic to maintain and improve our provision of care. Medical records are never used for marketing purposes or shared with any person/business/organisation save for disclosures required by law.
                 </p>
                 <p>
                   Please review our Patient Information handout, given to you prior to registration for more information.
                 </p>
                 <p>
-                  If you would like to review a full copy of our Privacy and Decency Policy, please ask at reception.
+                 If you would like to review a full copy of our Privacy and Decency Policy, please ask at reception.
                 </p>
                 <p>
                   Thank you
@@ -423,6 +423,7 @@ const getStartedClicked = (event) => {
                 <p>
                   Medical Express Clinic
                 </p>
+
 
               </div>
             </DialogContentText>

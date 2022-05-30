@@ -316,28 +316,23 @@ useEffect( () => {
               Patients wishing to book an appointment must confirm that:
           </Typography>
 
-          <ul style={{fontSize:"1.1rem", color:"#333", textAlign:"left"}}>
-              <li style={{marginTop:"15px"}}>
-                {`I do not have a fever`}
-              </li>
-              <li style={{marginTop:"15px"}}>
-                {`I do not have a new, continuous cough`}
-              </li>
-
-              <li style={{marginTop:"15px"}}>
-                {`I do not have shortness of breath`}
-              </li>
-              <li style={{marginTop:"15px"}}>
-                {`I have not been in contact with someone suspected or known to have coronavirus`}
+          <ul style={{ fontSize: "1.1rem", color: "#333", textAlign: "left" }}>
+            <li style={{ marginTop: "15px" }}>
+              {`I am not displaying any symptoms of COVID-19 and have not recently been in close contact with a COVID-19 patient.`}
             </li>
             <li style={{ marginTop: "15px" }}>
-              
-              I am making an appointment for a blood test on a self-request basis. I am aware that I will receive the laboratory report for the selected test only and I consent for test results to be emailed to my booking email address without any review, comment, interpretation, advice on suitability of the test, diagnosis or explanation of results from the doctor or the clinic.
-              
+              {`I am making an appointment for a diagnostic test on a self-request basis. I am aware that I will receive the laboratory report for the selected test only.`}
             </li>
-            <li style={{marginTop:"15px"}}>
-                {`I consent for test results to be emailed to my booking email address without any review, comment, interpretation or advice from the doctor or the clinic.`}
+            <li style={{ marginTop: "15px" }}>
+              {`I consent for test results to be emailed to my booking email address without any review, comment, interpretation, advice on suitability of the test, diagnosis or explanation of results from the doctor or the clinic.`}
             </li>
+            <li style={{ marginTop: "15px" }}>
+              {`I consent for test results to be emailed to my booking email address without any review, comment, interpretation or advice from the doctor or the clinic.`}
+            </li>
+            <li style={{ marginTop: "15px" }}>
+              {`If attending on a self-request basis, I am aware of the pre-testing requirements for my selected diagnostic test.`}
+            </li>
+
           </ul>
 
 
