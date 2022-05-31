@@ -46,6 +46,12 @@ export default function ValidateStep (state,setState, step, hasPackage)
         error = true;
       }
 
+      if (!state.gender)
+      {
+        setState(state => ({...state, genderError : true}));
+        error = true;
+      }
+
       if (!state.phone || state.phone.trim().length < 1)
       {
         setState(state => ({...state, phoneError : true}));

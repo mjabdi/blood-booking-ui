@@ -465,6 +465,10 @@ export default function ReviewForm() {
                       {state.email || "-"}{" "}
                     </span>
                   </li>
+                  <li className={classes.li}>
+                    <span className={classes.infoTitle}>Gender</span>
+                    <span className={classes.infoData}> {state.gender === "F" ? 'Female' : 'Male' } </span>
+                  </li>
 
                 </ul>
               </div>
