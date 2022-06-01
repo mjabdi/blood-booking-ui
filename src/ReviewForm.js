@@ -466,6 +466,10 @@ export default function ReviewForm() {
                     </span>
                   </li>
                   <li className={classes.li}>
+                    <span className={classes.infoTitle}>Date of Birth</span>
+                    <span className={classes.infoData}> {FormatDateFromString(state.birthDate)} </span>
+                  </li>
+                  <li className={classes.li}>
                     <span className={classes.infoTitle}>Gender</span>
                     <span className={classes.infoData}> {state.gender === "F" ? 'Female' : 'Male' } </span>
                   </li>
