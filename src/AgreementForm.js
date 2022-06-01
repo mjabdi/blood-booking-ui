@@ -395,8 +395,8 @@ useEffect( () => {
 
                
 
-            <p className={isMobile ? classes.textContentMobile : classes.textContent}>
-            If you cannot confirm all the points stated above, you must not proceed any further and must self-isolate for the next 14 days. Please click the box to agree to these terms.
+            <p className={isMobile ? classes.textContentMobile : classes.textContent} style={{background:"#ffe8e8", color : "#990000", padding:"10px", borderRadius: "8px"}}>
+                If you cannot confirm all the point stated above, you must not proceed any further. Please click the "Agree" button to agree to these terms.
             </p>
 
             {error && (

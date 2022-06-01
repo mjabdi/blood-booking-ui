@@ -356,9 +356,6 @@ export default function PackageForm() {
       setNoOptionsText("Please enter at least 3 characters")
       return matchSorter(options, '$$$$', {keys: ['code', 'description']});
     }
-
-  
-
   }
 
   return (
@@ -600,19 +597,6 @@ export default function PackageForm() {
                 />
               )}
             />
-
-            {/* <TextField
-              style={{ marginTop: "10px" }}
-              id="notes"
-              // error={state.notesError && state.package === "Others"}
-              fullWidth
-              // required={state.package === "Others"}
-              label=""
-              value={notes}
-              onChange={notesChanged}
-              placeholder="Enter blood test"
-              variant="outlined"
-            /> */}
           </div>
 
 
