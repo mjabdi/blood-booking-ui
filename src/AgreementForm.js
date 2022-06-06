@@ -321,7 +321,7 @@ useEffect( () => {
               {`I am not displaying any symptoms of COVID-19 and have not recently been in close contact with a COVID-19 patient.`}
             </li>
             <li style={{ marginTop: "15px" }}>
-              {`I am making an appointment for a diagnostic test on a self-request basis. I am aware that I will receive the laboratory report for the selected test only.`}
+             I am making an appointment for a blood test on a self-request basis. I have reviewed the <a href="https://www.blood.london/terms-and-condition/" target='_blank' style={{fontWeight:"600", textDecoration: "none", color:"#111"}}> terms and conditions </a> of the service and am aware that I will receive the laboratory report for the selected test only. I consent for test results to be emailed to my booking email address without any review, comment, interpretation or advice from the doctor or the clinic.
             </li>
             <li style={{ marginTop: "15px" }}>
               {`I consent for test results to be emailed to my booking email address without any review, comment, interpretation, advice on suitability of the test, diagnosis or explanation of results from the doctor or the clinic.`}
