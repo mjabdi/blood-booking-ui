@@ -280,7 +280,8 @@ export default function Checkout() {
           indivisualTests: state.indivisualTests && state.indivisualTests.length > 0 ? JSON.stringify(state.indivisualTests) : null,
           estimatedPrice: state.totalPrice || '',
           doctorConsultation : state.check_withgp || false,
-          gender: state.gender
+          gender: state.gender,
+          smsPush: state.smsPush
         };
 
         const promise = BookService.bookAppointment({
@@ -349,7 +350,7 @@ export default function Checkout() {
             justify="center"
             alignItems="center"
           >
-            <Grid item item xs={10}>
+            <Grid item xs={10}>
               <Typography
                 style={{ fontWeight: "400" }}
                 variant="h6"
