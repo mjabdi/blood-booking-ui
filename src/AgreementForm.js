@@ -139,11 +139,11 @@ const useStyles = makeStyles((theme) => ({
 },
 textContent : {
     color : "#666f77",
-    fontSize : "1.1rem",
+    fontSize : "1rem",
     textAlign: "justify",
     paddingLeft: "8px",
     paddingRight: "20px",
-    lineHeight: "2.2em",
+    lineHeight: "2em",
     fontWeight : "400"
 },
 
@@ -153,7 +153,7 @@ textContentMobile : {
   textAlign: "justify",
   paddingLeft: "8px",
   paddingRight: "20px",
-  lineHeight: "2.2em",
+  lineHeight: "2em",
   fontWeight : "400"
 },
 
@@ -316,21 +316,36 @@ useEffect( () => {
               Patients wishing to book an appointment must confirm that:
           </Typography>
 
-          <ul style={{ fontSize: "1.1rem", color: "#333", textAlign: "left" }}>
+          <ul style={{ fontSize: "1rem", color: "#333", textAlign: "left" }}>
             <li style={{ marginTop: "15px" }}>
               {`I am not displaying any symptoms of COVID-19 and have not recently been in close contact with a COVID-19 patient.`}
             </li>
             <li style={{ marginTop: "15px" }}>
              I am making an appointment for a blood test on a self-request basis. I have reviewed the <a href="https://www.blood.london/terms-and-condition/" target='_blank' style={{fontWeight:"600", textDecoration: "none", color:"#111"}}> terms and conditions </a> of the service and am aware that I will receive the laboratory report for the selected test only. I consent for test results to be emailed to my booking email address without any review, comment, interpretation or advice from the doctor or the clinic.
             </li>
+          </ul>
+
+          <div style={{textAlign:"left", fontSize:"1.1rem", fontWeight:"700", textDecoration:"underline"}}>
+            I am aware
+          </div>
+
+        
+          <ul style={{ fontSize: "1rem", color: "#333", textAlign: "left" }}>
+
+
             <li style={{ marginTop: "15px" }}>
-              {`I consent for test results to be emailed to my booking email address without any review, comment, interpretation, advice on suitability of the test, diagnosis or explanation of results from the doctor or the clinic.`}
+              Test results will be emailed to my booking email address without any
+              review, comment, interpretation, advice on <strong>suitability of the test</strong> , diagnosis
+              or explanation of results from the doctor or the clinic.
             </li>
             <li style={{ marginTop: "15px" }}>
-              {`I consent for test results to be emailed to my booking email address without any review, comment, interpretation or advice from the doctor or the clinic.`}
+              Test results will be emailed to my booking email address <strong> without any
+              review, comment, interpretation or medical advice from the doctor or the
+              clinic.</strong>
             </li>
             <li style={{ marginTop: "15px" }}>
-              {`If attending on a self-request basis, I am aware of the pre-testing requirements for my selected diagnostic test.`}
+              Of the pre-testing requirements for my selected diagnostic test. (Fasting,
+              time of the day, etc.)
             </li>
 
           </ul>
