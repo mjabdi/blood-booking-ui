@@ -378,11 +378,11 @@ useEffect( () => {
               (Fasting, time of the day, etc.)
             </li>
             <li style={{ marginTop: "15px" }}>
-              That this testing service is not designed for clinically urgent
-              cases as blood samples are referred to an external laboratory for
-              analysis and reporting. Turnaround times listed on the website
+              That this testing service  <strong>is not designed for clinically urgent
+              cases</strong> as blood samples are referred to an external laboratory for
+              analysis and reporting. <strong>Turnaround times listed on the website
               should be treated as a guideline to when patients should expect to
-              receive results. Clinically urgent blood tests should only be
+              receive results. </strong> Clinically urgent blood tests should only be
               ordered under the care of a registered medical practitioner, not
               on a self-request basis.
             </li>
