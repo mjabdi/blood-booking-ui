@@ -282,38 +282,43 @@ useEffect( () => {
       <CssBaseline />
       <AppBar position="absolute" color="default" className={classes.appBar}>
         <Toolbar>
-
-
-        <Grid
+          <Grid
             container
             direction="row"
-            spacing= {1}
+            spacing={1}
             justify="center"
             alignItems="center"
-        >
-
-
+          >
             <Grid item xs={10}>
-                  <Typography  style={{fontWeight: "400"}} variant="h6" color="inherit" noWrap>
-                    Medical Express Clinic
-                  </Typography>
+              <Typography
+                style={{ fontWeight: "400" }}
+                variant="h6"
+                color="inherit"
+                noWrap
+              >
+                Medical Express Clinic
+              </Typography>
             </Grid>
 
             <Grid item xs={2}>
-                    <img className={classes.logoImage} src={logoImage} alt="logo image"/> 
+              <img
+                className={classes.logoImage}
+                src={logoImage}
+                alt="logo image"
+              />
             </Grid>
-
-
-        
-        </Grid>  
+          </Grid>
         </Toolbar>
       </AppBar>
       <main className={classes.layout}>
         <Paper className={classes.paper}>
-
-
-          <Typography style={{ marginBottom: "30px"}} component="h1" variant="h6" align="left">
-              Patients wishing to book an appointment must confirm that:
+          <Typography
+            style={{ marginBottom: "30px" }}
+            component="h1"
+            variant="h6"
+            align="left"
+          >
+            Patients wishing to book an appointment must confirm that:
           </Typography>
 
           <ul style={{ fontSize: "1rem", color: "#333", textAlign: "left" }}>
@@ -321,37 +326,69 @@ useEffect( () => {
               {`I am not displaying any symptoms of COVID-19 and have not recently been in close contact with a COVID-19 patient.`}
             </li>
             <li style={{ marginTop: "15px" }}>
-             I am making an appointment for a blood test on a self-request basis. I have reviewed the <a href="https://www.blood.london/terms-and-condition/" target='_blank' style={{fontWeight:"600", textDecoration: "none", color:"#111"}}> terms and conditions </a> of the service and am aware that I will receive the laboratory report for the selected test only. I consent for test results to be emailed to my booking email address without any review, comment, interpretation or advice from the doctor or the clinic.
+              I am making an appointment for a blood test on a self-request
+              basis. I have reviewed the{" "}
+              <a
+                href="https://www.blood.london/terms-and-condition/"
+                target="_blank"
+                style={{
+                  fontWeight: "600",
+                  textDecoration: "none",
+                  color: "#111",
+                }}
+              >
+                {" "}
+                terms and conditions{" "}
+              </a>{" "}
+              of the service and am aware that I will receive the laboratory
+              report for the selected test only. I consent for test results to
+              be emailed to my booking email address without any review,
+              comment, interpretation or advice from the doctor or the clinic.
             </li>
           </ul>
 
-          <div style={{textAlign:"left", fontSize:"1.1rem", fontWeight:"700", textDecoration:"underline"}}>
+          <div
+            style={{
+              textAlign: "left",
+              fontSize: "1.1rem",
+              fontWeight: "700",
+              textDecoration: "underline",
+            }}
+          >
             I am aware
           </div>
 
-        
           <ul style={{ fontSize: "1rem", color: "#333", textAlign: "left" }}>
-
-
             <li style={{ marginTop: "15px" }}>
-              Test results will be emailed to my booking email address without any
-              review, comment, interpretation, advice on <strong>suitability of the test</strong> , diagnosis
-              or explanation of results from the doctor or the clinic.
+              Test results will be emailed to my booking email address without
+              any review, comment, interpretation, advice on 
+              <strong>suitability of the test</strong> , diagnosis or
+              explanation of results from the doctor or the clinic.
             </li>
             <li style={{ marginTop: "15px" }}>
-              Test results will be emailed to my booking email address <strong> without any
-              review, comment, interpretation or medical advice from the doctor or the
-              clinic.</strong>
+              Test results will be emailed to my booking email address 
+              <strong>
+                {" "}
+                without any review, comment, interpretation or medical advice
+                from the doctor or the clinic.
+              </strong>
             </li>
             <li style={{ marginTop: "15px" }}>
-              Of the pre-testing requirements for my selected diagnostic test. (Fasting,
-              time of the day, etc.)
+              Of the pre-testing requirements for my selected diagnostic test.
+              (Fasting, time of the day, etc.)
             </li>
-
+            <li style={{ marginTop: "15px" }}>
+              That this testing service is not designed for clinically urgent
+              cases as blood samples are referred to an external laboratory for
+              analysis and reporting. Turnaround times listed on the website
+              should be treated as a guideline to when patients should expect to
+              receive results. Clinically urgent blood tests should only be
+              ordered under the care of a registered medical practitioner, not
+              on a self-request basis.
+            </li>
           </ul>
 
-
-                {/* <Grid container  direction="column"  justify="flex-start" alignItems="flex-start" spacing={3}>
+          {/* <Grid container  direction="column"  justify="flex-start" alignItems="flex-start" spacing={3}>
 
                 <Grid item xs={12}  >
 
@@ -404,22 +441,29 @@ useEffect( () => {
 
                 </Grid> */}
 
-             
+          <p
+            className={
+              isMobile ? classes.textContentMobile : classes.textContent
+            }
+            style={{
+              background: "#ffe8e8",
+              color: "#990000",
+              padding: "10px",
+              borderRadius: "8px",
+            }}
+          >
+            If you cannot confirm all the point stated above, you must not
+            proceed any further. Please click the "Agree" button to agree to
+            these terms.
+          </p>
 
-                
+          {error && (
+            <Alert severity="error">
+              You need to check all the terms to proceed!{" "}
+            </Alert>
+          )}
 
-               
-
-            <p className={isMobile ? classes.textContentMobile : classes.textContent} style={{background:"#ffe8e8", color : "#990000", padding:"10px", borderRadius: "8px"}}>
-                If you cannot confirm all the point stated above, you must not proceed any further. Please click the "Agree" button to agree to these terms.
-            </p>
-
-            {error && (
-                <Alert severity="error">You need to check all the terms to proceed! </Alert>
-            )}
-            
-
-        {/* <Button 
+          {/* <Button 
                 // variant="contained" 
                 className={classes.getStartedButton} 
                 style = {{marginRight : "20px"}}
@@ -430,136 +474,153 @@ useEffect( () => {
         Back
         </Button> */}
 
-          <Button 
-                  variant="contained" 
-                  className={classes.getStartedButton} 
-                  color="primary"
-                  onClick={getAgreeClicked}
-                  onTouchTap={getAgreeClicked} 
-                  >
+          <Button
+            variant="contained"
+            className={classes.getStartedButton}
+            color="primary"
+            onClick={getAgreeClicked}
+            onTouchTap={getAgreeClicked}
+          >
             Agree
-         </Button>
-      
-
+          </Button>
         </Paper>
 
-        <Button 
-                  variant="contained" 
-                  className={classes.privacyButton} 
-                  color="secondary"
-                  startIcon={<HttpsIcon/>}
-                  onClick={handleClickOpen('paper')}
-                  onTouchTap={handleClickOpen('paper')} 
-                  >
-             Privacy
-         </Button>
+        <Button
+          variant="contained"
+          className={classes.privacyButton}
+          color="secondary"
+          startIcon={<HttpsIcon />}
+          onClick={handleClickOpen("paper")}
+          onTouchTap={handleClickOpen("paper")}
+        >
+          Privacy
+        </Button>
 
-         <Button 
-                  variant="contained" 
-                  className={classes.faqButton} 
-                  color="secondary"
-                  startIcon={<LiveHelpIcon/>}
-                  onClick={handleClickOpenFAQ('paper')}
-                  onTouchTap={handleClickOpenFAQ('paper')} 
-                  >
-             FAQ
-         </Button>
+        <Button
+          variant="contained"
+          className={classes.faqButton}
+          color="secondary"
+          startIcon={<LiveHelpIcon />}
+          onClick={handleClickOpenFAQ("paper")}
+          onTouchTap={handleClickOpenFAQ("paper")}
+        >
+          FAQ
+        </Button>
 
-         <Dialog
-                        open={open}
-                        onClose={handleClose}
-                        scroll={scroll}
-                        aria-labelledby="scroll-dialog-title"
-                        aria-describedby="scroll-dialog-description"
-                      >
-          <DialogTitle id="scroll-dialog-title">
-              PRIVACY NOTICE
-          </DialogTitle>
+        <Dialog
+          open={open}
+          onClose={handleClose}
+          scroll={scroll}
+          aria-labelledby="scroll-dialog-title"
+          aria-describedby="scroll-dialog-description"
+        >
+          <DialogTitle id="scroll-dialog-title">PRIVACY NOTICE</DialogTitle>
           <DialogContent dividers={scroll === "paper"}>
             <DialogContentText
               id="scroll-dialog-description"
               ref={descriptionElementRef}
               tabIndex={-1}
             >
-              <div style={{ textAlign: "justify", padding: "0px", color:"#333" }}>
+              <div
+                style={{ textAlign: "justify", padding: "0px", color: "#333" }}
+              >
                 <p>
-                  Medical Express Clinic collects and holds the personal data of patients registered at the clinic so as to provide safe and effective ongoing care for our patients.
+                  Medical Express Clinic collects and holds the personal data of
+                  patients registered at the clinic so as to provide safe and
+                  effective ongoing care for our patients.
                 </p>
                 <p>
-                  Medical records are kept confidentially and securely under lock and key or securely on our server. They are primarily used for the safe and effective delivery of care.
-                </p>  
-                <p>
-                  Your medical record may be subject to clinical audit and management review in order for Medical Express Clinic to maintain and improve our provision of care.
+                  Medical records are kept confidentially and securely under
+                  lock and key or securely on our server. They are primarily
+                  used for the safe and effective delivery of care.
                 </p>
                 <p>
-                  Please review our Patient Information handout, given to you prior to registration for more information.
+                  Your medical record may be subject to clinical audit and
+                  management review in order for Medical Express Clinic to
+                  maintain and improve our provision of care.
                 </p>
                 <p>
-                  If you would like to review a full copy of our Privacy and Decency Policy, please ask at reception.
+                  Please review our Patient Information handout, given to you
+                  prior to registration for more information.
                 </p>
                 <p>
-                  Thank you
+                  If you would like to review a full copy of our Privacy and
+                  Decency Policy, please ask at reception.
                 </p>
-                <p>
-                  Medical Express Clinic
-                </p>
-
+                <p>Thank you</p>
+                <p>Medical Express Clinic</p>
               </div>
             </DialogContentText>
-                        </DialogContent>
-                        <DialogActions>
-                          <Button onClick={handleClose} color="primary">
-                            Close
-                          </Button>
-                      
-                        </DialogActions>
-      </Dialog>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleClose} color="primary">
+              Close
+            </Button>
+          </DialogActions>
+        </Dialog>
 
-      <Dialog
-                        open={openFAQ}
-                        onClose={handleCloseFAQ}
-                        scroll={scrollFAQ}
-                        aria-labelledby="scroll-dialog-title-FAQ"
-                        aria-describedby="scroll-dialog-description-FAQ"
-                      >
-                        <DialogTitle id="scroll-dialog-title">FAQ</DialogTitle>
-                        <DialogContent dividers={scroll === 'paper'}>
-                          <DialogContentText
-                            id="scroll-dialog-description-FAQ"
-                            ref={descriptionElementRefFAQ}
-                            tabIndex={-1}
-                          >
-                            <div style={{textAlign:"justify", padding:"10px"}}>
-                             
-                            {faq.map(element => (
-                              <React.Fragment>
-                                <p style={{borderLeft: "4px solid red", background: "#eee", fontWeight: "600", paddingLeft: "10px",paddingRight: "10px", lineHeight: "30px"}}>
-                                  <span style={{color: "red" , fontSize:"24px"}}> Q. </span>
-                                    {element.question} 
-                                </p>
+        <Dialog
+          open={openFAQ}
+          onClose={handleCloseFAQ}
+          scroll={scrollFAQ}
+          aria-labelledby="scroll-dialog-title-FAQ"
+          aria-describedby="scroll-dialog-description-FAQ"
+        >
+          <DialogTitle id="scroll-dialog-title">FAQ</DialogTitle>
+          <DialogContent dividers={scroll === "paper"}>
+            <DialogContentText
+              id="scroll-dialog-description-FAQ"
+              ref={descriptionElementRefFAQ}
+              tabIndex={-1}
+            >
+              <div style={{ textAlign: "justify", padding: "10px" }}>
+                {faq.map((element) => (
+                  <React.Fragment>
+                    <p
+                      style={{
+                        borderLeft: "4px solid red",
+                        background: "#eee",
+                        fontWeight: "600",
+                        paddingLeft: "10px",
+                        paddingRight: "10px",
+                        lineHeight: "30px",
+                      }}
+                    >
+                      <span style={{ color: "red", fontSize: "24px" }}>
+                        {" "}
+                        Q.{" "}
+                      </span>
+                      {element.question}
+                    </p>
 
-                                <p style={{borderLeft: "4px solid #999", background: "#fff", fontWeight: "400", color: "#555" ,paddingLeft: "10px",paddingRight: "30px", lineHeight: "50px"}}>
-                                  <span style={{color: "#555" , fontSize:"24px"}}> A. </span>
-                                    {element.answer} 
-                                </p>
-
-                              </React.Fragment>
-
-                            ))}
-
-                          </div>
-                          </DialogContentText>
-                        </DialogContent>
-                        <DialogActions>
-                          <Button onClick={handleCloseFAQ} color="primary">
-                            Close
-                          </Button>
-                      
-                        </DialogActions>
-          </Dialog>
-
-
-
+                    <p
+                      style={{
+                        borderLeft: "4px solid #999",
+                        background: "#fff",
+                        fontWeight: "400",
+                        color: "#555",
+                        paddingLeft: "10px",
+                        paddingRight: "30px",
+                        lineHeight: "50px",
+                      }}
+                    >
+                      <span style={{ color: "#555", fontSize: "24px" }}>
+                        {" "}
+                        A.{" "}
+                      </span>
+                      {element.answer}
+                    </p>
+                  </React.Fragment>
+                ))}
+              </div>
+            </DialogContentText>
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={handleCloseFAQ} color="primary">
+              Close
+            </Button>
+          </DialogActions>
+        </Dialog>
 
         <Copyright />
       </main>
