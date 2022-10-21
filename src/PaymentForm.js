@@ -63,7 +63,7 @@ export default class PaymentForm extends React.Component {
 
   createVerificationDetails() {
     return {
-      amount: "100.00",
+      amount: "50.00",
       currencyCode: "GBP",
       intent: "CHARGE",
       billingContact: {
@@ -104,7 +104,7 @@ export default class PaymentForm extends React.Component {
                 </div>
               </fieldset>
 
-              <CreditCardSubmitButton>Pay £100.00</CreditCardSubmitButton>
+              <CreditCardSubmitButton>Pay £50.00</CreditCardSubmitButton>
 
             </SquarePaymentForm>
           </Grid>

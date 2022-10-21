@@ -43,6 +43,7 @@ import LiveHelpIcon from "@material-ui/icons/LiveHelp";
 import faq from "./FAQ";
 import dateformat from "dateformat";
 import PackageForm from "./PackageForm";
+import PayForm from "./PayForm";
 
 function Copyright() {
   return (
@@ -204,6 +205,9 @@ export default function Checkout() {
           return <InformationForm />;
         case 3:
           return <ReviewForm />;
+        case 4:
+            return <PayForm />;
+    
         default:
           throw new Error("Unknown step");
       }
@@ -220,6 +224,8 @@ export default function Checkout() {
           return <InformationForm />;
         case 4:
           return <ReviewForm />;
+        case 5:
+            return <PayForm />;
         default:
           throw new Error("Unknown step");
       }
@@ -319,17 +325,25 @@ export default function Checkout() {
     setActiveStep(4);
   };
 
-  const handleNext = () => {
-    if (state.activeStep === steps.length - 1) {
-      // if (!state.dataConfirmed)
-      // {
-      //   setState(state => ({...state, dataConfirmedError : true }));
-      //   return;
-      // }
+  const handleNext = async () => {
+    // if (state.activeStep === steps.length - 1) {
+    //   // if (!state.dataConfirmed)
+    //   // {
+    //   //   setState(state => ({...state, dataConfirmedError : true }));
+    //   //   return;
+    //   // }
 
-      setSubmiting(true);
-      submitForm();
-    } else if (ValidateStep(state, setState, state.activeStep, state.urlPackageName ? true : false)) {
+    //   // setSubmiting(true);
+    //   // submitForm();
+    // } else 
+
+    setSubmiting(true)
+
+    const isValid = await ValidateStep(state, setState, state.activeStep, state.urlPackageName ? true : false)
+
+    setSubmiting(false)
+    
+    if (isValid) {
       setActiveStep(state.activeStep + 1);
     }
   };
@@ -412,7 +426,7 @@ export default function Checkout() {
           {/* <PersonsBox/> */}
 
           <React.Fragment>
-            {state.activeStep === steps.length ? (
+            {state.activeStep === steps.length + 1 ? (
               <ResultsForm />
             ) : (
               <React.Fragment>
@@ -443,16 +457,24 @@ export default function Checkout() {
                       </Button>
                     )}
 
-                  <Button
-                    disabled={submiting}
-                    variant="contained"
-                    color="primary"
-                    onTouchTap={handleNext}
-                    onClick={handleNext}
-                    className={classes.button}
-                  >
-                    {state.activeStep === steps.length - 1 ? "Submit" : "Next"}
-                  </Button>
+                  {state.activeStep <= steps.length - 1 && (
+                    <Button
+                      disabled={
+                        submiting ||
+                        (state.activeStep === steps.length - 1 && !state.bookingRef)
+                      }
+                      variant="contained"
+                      color="primary"
+                      onTouchTap={handleNext}
+                      onClick={handleNext}
+                      className={classes.button}
+                    >
+                      {state.activeStep === steps.length - 1
+                        ? "Proceed to Payment"
+                        : "Next"}
+                    </Button>
+                  )}
+
                 </div>
               </React.Fragment>
             )}
@@ -486,38 +508,44 @@ export default function Checkout() {
           aria-labelledby="scroll-dialog-title"
           aria-describedby="scroll-dialog-description"
         >
-          <DialogTitle id="scroll-dialog-title">
-              PRIVACY NOTICE
-          </DialogTitle>
+          <DialogTitle id="scroll-dialog-title">PRIVACY NOTICE</DialogTitle>
           <DialogContent dividers={scroll === "paper"}>
             <DialogContentText
               id="scroll-dialog-description"
               ref={descriptionElementRef}
               tabIndex={-1}
             >
-              <div style={{ textAlign: "justify", padding: "0px", color:"#333" }}>
+              <div
+                style={{ textAlign: "justify", padding: "0px", color: "#333" }}
+              >
                 <p>
-                  Medical Express Clinic collects and holds the personal data of patients registered at the clinic so as to provide safe and effective ongoing care for our patients.
+                  Medical Express Clinic collects and holds the personal data of
+                  patients registered at the clinic so as to provide safe and
+                  effective ongoing care for our patients.
                 </p>
                 <p>
-                  Medical records are kept confidentially and securely under lock and key or securely on our server. They are primarily used for the safe and effective delivery of care.
-                </p>  
-                <p>
-                  Your medical record may be subject to clinical audit and management review in order for Medical Express Clinic to maintain and improve our provision of care. Medical records are never used for marketing purposes or shared with any person/business/organisation save for disclosures required by law.
+                  Medical records are kept confidentially and securely under
+                  lock and key or securely on our server. They are primarily
+                  used for the safe and effective delivery of care.
                 </p>
                 <p>
-                  Please review our Patient Information handout, given to you prior to registration for more information.
+                  Your medical record may be subject to clinical audit and
+                  management review in order for Medical Express Clinic to
+                  maintain and improve our provision of care. Medical records
+                  are never used for marketing purposes or shared with any
+                  person/business/organisation save for disclosures required by
+                  law.
                 </p>
                 <p>
-                 If you would like to review a full copy of our Privacy and Decency Policy, please ask at reception.
+                  Please review our Patient Information handout, given to you
+                  prior to registration for more information.
                 </p>
                 <p>
-                  Thank you
+                  If you would like to review a full copy of our Privacy and
+                  Decency Policy, please ask at reception.
                 </p>
-                <p>
-                  Medical Express Clinic
-                </p>
-
+                <p>Thank you</p>
+                <p>Medical Express Clinic</p>
               </div>
             </DialogContentText>
           </DialogContent>

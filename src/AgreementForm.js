@@ -386,6 +386,12 @@ useEffect( () => {
               ordered under the care of a registered medical practitioner, not
               on a self-request basis.
             </li>
+
+            <li style={{ marginTop: "15px" }}>
+            <strong>A blood draw fee of <span style={{color:"red"}}>£50</span> is payable upon booking your appointment, this will be deducted from the total cost of your service. </strong> 
+              Urine tests, swab tests and full sexual health packages carry no blood draw fee, the £50 booking fee will be deducted from the total cost of your service.
+            </li>
+
           </ul>
 
           {/* <Grid container  direction="column"  justify="flex-start" alignItems="flex-start" spacing={3}>

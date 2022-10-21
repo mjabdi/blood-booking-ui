@@ -85,10 +85,17 @@ export default function PayForm() {
 
     const _personInfo = {
       fullname: state.fullname,
-      email: state.email,
-      phone: state.phone,
-      notes: state.notes,
-      service: state.package,
+      email: state.email || '',
+      phone: state.phone || '',
+      birthDate: state.birthDate,
+      notes: state.notes || '',
+      packageName : state.packageName,
+      indivisualTests: state.indivisualTests && state.indivisualTests.length > 0 ? JSON.stringify(state.indivisualTests) : null,
+      estimatedPrice: state.totalPrice || '',
+      doctorConsultation : state.check_withgp || false,
+      gender: state.gender,
+      smsPush: state.smsPush,
+      
       bookingDate: dateformat(
         new Date(state.bookingDate.toUTCString().slice(0, -4)),
         "yyyy-mm-dd"

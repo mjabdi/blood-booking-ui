@@ -485,7 +485,7 @@ export default function ReviewForm() {
         </div>
 
         <div className={classes.terms}>
-          By clicking on the "SUBMIT" button you are agreeing with our{" "}
+          By clicking on the "PROCEED TO PAYMENT" button you are agreeing with our{" "}
           <a
             className={classes.link}
             target="_blank"
@@ -503,6 +503,14 @@ export default function ReviewForm() {
           >
             consent to treatment policies.
           </a>
+        </div>
+
+        <div>
+          <Alert severity="info">
+           <div style={{fontSize:"1rem", fontWeight:"500"}}>
+            You need to pay <b style={{color:"red"}}>£50</b> deposit to secure your appointment.
+            </div>
+          </Alert>
         </div>
 
 
