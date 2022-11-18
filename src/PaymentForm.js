@@ -12,7 +12,7 @@ import { Grid } from "@material-ui/core";
 import PaymentService from "./services/PaymentService";
 
 
-const SANDBOX = false
+const SANDBOX = true
 
 const LIVE_APPLICATION_ID = "sq0idp-8-tRTRJuDMDeTBHxJq02xg";  // Live
 const LIVE_LOCATION_ID = "L2SBNYPV0XWVJ";                     //Live   

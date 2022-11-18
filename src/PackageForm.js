@@ -81,8 +81,8 @@ const useStyles = makeStyles((theme) => ({
 
 export const Packages = [
   {
-    packageName: "SLIVER BLOOD TEST",
-    title: "SLIVER BLOOD TEST",
+    packageName: "SILVER BLOOD TEST",
+    title: "SILVER BLOOD TEST",
     malePrice: "£107.00",
     femalePrice: "£107.00",
     color: "#aaa",
@@ -101,8 +101,8 @@ export const Packages = [
       "General check-up usually for healthy people to determine normal body function. Very helpful in indicating deficiencies and identifying problems.",
   },
   {
-    packageName: "SLIVER PLUS BLOOD TEST",
-    title: "SLIVER PLUS BLOOD TEST",
+    packageName: "SILVER PLUS BLOOD TEST",
+    title: "SILVER PLUS BLOOD TEST",
     malePrice: "£195.00",
     femalePrice: "£195.00",
     color: "#00a1c5",
