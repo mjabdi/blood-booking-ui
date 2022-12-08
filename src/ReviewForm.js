@@ -314,7 +314,7 @@ export default function ReviewForm() {
       >
         <Fade up>
           <div className={classes.boxTime}>
-            <div className={classes.boxTitle}>Appoinment Info</div>
+            <div className={classes.boxTitle}>Appointment Info</div>
 
             <Grid item xs={12} md={12}>
               <div>
@@ -420,6 +420,10 @@ export default function ReviewForm() {
                     </span>
                   </li>
 
+                  <li className={classes.li}>
+                    <strong> Phlebotomy (Blood Taking Fee) - £50 </strong>
+                  </li>
+
                   <li className={classes.li} hidden={!state.totalPrice}>
                     <span className={classes.infoTitleTime}>
                       <FontAwesomeIcon
@@ -480,13 +484,16 @@ export default function ReviewForm() {
           </div>
         </Fade>
 
-        <div style={{ textAlign: "left", fontWeight: "500", fontSize: "0.9rem", padding: "10px", border: "1px solid #999", borderRadius: "8px", lineHeight: "1.5rem", backgroundColor: "#eee", marginTop: "20px" }}>
-          {/* A blood draw fee of <span className={classes.link} style={{ fontWeight: "700" }}>£50</span> is payable for blood tests. Urine tests, swab tests and full sexual health packages carry no surcharge. */}
 
-          <strong>A blood draw fee of <span style={{color:"red"}}>£50</span> is payable upon booking your appointment, this will be deducted from the total cost of your service. </strong> 
-              Urine tests, swab tests and full sexual health packages carry no blood draw fee, the £50 booking fee will be deducted from the total cost of your service.
-
+        <div style={{ textAlign: "left", fontWeight: "500", fontSize: "0.9rem", fontWeight:"700", padding: "10px", border: "1px solid #999", borderRadius: "8px", lineHeight: "1.5rem", backgroundColor: "#eee", marginTop: "20px" }}>
+            A blood draw fee of <span style={{color:"red"}}>£50</span> is payable to reserve your appointment. When you attend the clinic, you will only be charged for the test, as you have already paid the phlebotomy fee. 
         </div>
+
+        <div style={{ textAlign: "left", fontWeight: "500", fontSize: "0.9rem", padding: "10px", border: "1px solid #999", borderRadius: "8px", lineHeight: "1.5rem", backgroundColor: "#eee", marginTop: "20px" }}>
+          Urine tests, swab tests and full sexual health packages carry no blood draw fee, the £50 booking fee will be deducted from the total cost of your service.
+        </div>
+
+
 
         <div className={classes.terms}>
           By clicking on the "PROCEED TO PAYMENT" button you are agreeing with our{" "}
@@ -512,7 +519,7 @@ export default function ReviewForm() {
         <div>
           <Alert severity="info">
            <div style={{fontSize:"1rem", fontWeight:"500"}}>
-            You need to pay <b style={{color:"red"}}>£50</b> deposit to secure your appointment.
+            You need to pay the <b style={{color:"red"}}>£50</b> deposit to secure your appointment.
             </div>
           </Alert>
         </div>
