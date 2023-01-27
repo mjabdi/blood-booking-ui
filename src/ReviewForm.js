@@ -355,7 +355,7 @@ export default function ReviewForm() {
                       />
                       Check-up Duration:
                     </span>
-                    Up-to 30 minutes
+                    15 minutes
                   </li>
 
                   <li className={classes.li}  style={{lineHeight:"2rem"}}>
@@ -421,21 +421,34 @@ export default function ReviewForm() {
                   </li>
 
                   <li className={classes.li}>
-                    <strong> Phlebotomy (Blood Taking Fee) - £50 </strong>
+                    <div style={{border:"1px solid #f56464", padding:"18px 10px", borderRadius:"10px", position:"relative"}}>
+                      <div style={{position:"absolute", top:"-8px", left:"10px", background:"#fff", fontSize:"0.85em", fontWeight:"500", padding:"0px 5px", color:"red"}}>
+                        Payable Now
+                      </div>
+                      <strong> Phlebotomy (Blood Taking Fee) - £50 </strong>
+                    </div>
                   </li>
 
-                  <li className={classes.li} hidden={!state.totalPrice}>
+                  <li className={classes.li} hidden={!state.totalPrice} style={{marginTop:"20px"}}>
+
+                  <div style={{border:"1px solid #f56464", padding:"18px 10px", borderRadius:"10px", position:"relative"}}>
+                      <div style={{position:"absolute", top:"-8px", left:"10px", background:"#fff", fontSize:"0.85em", fontWeight:"500", padding:"0px 5px", color:"red"}}>
+                        Payable at the Clinic
+                      </div>
+
                     <span className={classes.infoTitleTime}>
                       <FontAwesomeIcon
                         icon={faPoundSign}
                         className={classes.icon}
                       />
-                      Estimated Price:
+                      Test Price:
                     </span>
                     <span className={classes.infoData} style={{color:"#dc2626", fontWeight:"500"}}>
                       {" "}
                       {state.totalPrice  ? state.totalPrice  : '-'}
                     </span>
+
+                    </div>
                   </li>
 
                 </ul>

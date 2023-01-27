@@ -313,7 +313,7 @@ useEffect( () => {
       <main className={classes.layout}>
         <Paper className={classes.paper}>
           <Typography
-            style={{ marginBottom: "30px" }}
+            style={{ marginBottom: "30px"}}
             component="h1"
             variant="h6"
             align="left"
@@ -321,13 +321,9 @@ useEffect( () => {
             Patients wishing to book an appointment must confirm that:
           </Typography>
 
-          <ul style={{ fontSize: "1rem", color: "#333", textAlign: "left" }}>
+          <ul style={{ fontSize: "1rem", color: "#333", textAlign: "justify" }}>
             <li style={{ marginTop: "15px" }}>
-              {`I am not displaying any symptoms of COVID-19 and have not recently been in close contact with a COVID-19 patient.`}
-            </li>
-            <li style={{ marginTop: "15px" }}>
-              I am making an appointment for a blood test on a self-request
-              basis. I have reviewed the{" "}
+            I am making an appointment for a blood test on a self-request basis. I have reviewed the{" "}
               <a
                 href="https://www.blood.london/terms-and-condition/"
                 target="_blank"
@@ -340,10 +336,7 @@ useEffect( () => {
                 {" "}
                 terms and conditions{" "}
               </a>{" "}
-              of the service and am aware that I will receive the laboratory
-              report for the selected test only. I consent for test results to
-              be emailed to my booking email address without any review,
-              comment, interpretation or advice from the doctor or the clinic.
+              of the service and am aware that I will receive the laboratory report for the selected test only. I consent for test results to be emailed to my booking email address without any review, comment, interpretation or advice from the doctor or the clinic.
             </li>
           </ul>
 
@@ -358,7 +351,7 @@ useEffect( () => {
             I am aware
           </div>
 
-          <ul style={{ fontSize: "1rem", color: "#333", textAlign: "left" }}>
+          <ul style={{ fontSize: "1rem", color: "#333", textAlign: "justify" }}>
             <li style={{ marginTop: "15px" }}>
               Test results will be emailed to my booking email address without
               any review, comment, interpretation, advice on 
@@ -388,8 +381,13 @@ useEffect( () => {
             </li>
 
             <li style={{ marginTop: "15px" }}>
-            <strong>A blood draw fee of <span style={{color:"red"}}>£50</span> is payable upon booking your appointment, this will be deducted from the total cost of your service. </strong> 
-              Urine tests, swab tests and full sexual health packages carry no blood draw fee, the £50 booking fee will be deducted from the total cost of your service.
+            <strong>A blood draw fee of <span style={{color:"red"}}>£50</span> is payable upon booking your appointment. 
+            When you attend the clinic, you will only need to pay the fee for your test as listed on the website. 
+             </strong> 
+            </li>
+
+            <li style={{ marginTop: "15px" }}>
+            Urine tests, swab tests and full sexual health packages carry no blood draw fee, the £50 booking fee will be deducted from the total cost of your service.
             </li>
 
           </ul>
