@@ -380,7 +380,7 @@ export default function ReviewForm() {
                         className={classes.icon}
                         style={{marginTop:"5px"}}
                       />
-                      Indivisual Tests:
+                      Individual Tests:
                     </span>
                     <div>
                         {state.indivisualTests && state.indivisualTests.map(item => (
