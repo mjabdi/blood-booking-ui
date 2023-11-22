@@ -188,7 +188,7 @@ export default function Checkout() {
   :  [
     "Appoinment Date",
     "Appoinment Time",
-    "Package",
+    "Test",
     "Basic Info",
     "Review",
   ];

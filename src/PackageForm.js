@@ -79,7 +79,9 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
-export const Packages = [
+
+export const Packages = []
+export const Packages_Old = [
   {
     packageName: "SILVER BLOOD TEST",
     title: "SILVER BLOOD TEST",
@@ -361,7 +363,7 @@ export default function PackageForm() {
   return (
     <React.Fragment>
       <Typography className={classes.pageTitle} variant="h6" gutterBottom>
-        Choose your Package
+        Choose your Test
       </Typography>
 
       <div
@@ -372,7 +374,7 @@ export default function PackageForm() {
           boxShadow: "0px 0px 20px #dadada",
         }}
       >
-        <div
+        {/* <div
           style={{
             textAlign: "center",
             fontSize: "1.2rem",
@@ -382,7 +384,7 @@ export default function PackageForm() {
           }}
         >
           Popular Blood Test Packages
-        </div>
+        </div> */}
 
         <Grid
           container
@@ -524,7 +526,7 @@ export default function PackageForm() {
               marginTop: "30px",
             }}
           >
-            Looking for a specific blood test? Search through over 1,000 blood tests we offer at our clinic below :
+Please select your blood test from over 1,000 options we offer at our clinic below :
           </div>
 
           <div
@@ -611,7 +613,7 @@ export default function PackageForm() {
               marginTop: "30px",
             }}
           >
-            Couldn't find your blood test in the list? Write to us below :
+            Couldn't find your blood test or have a list? Please leave a comment below for our team:
           </div>
 
           <div
