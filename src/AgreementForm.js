@@ -1,78 +1,73 @@
-import React from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Paper from '@material-ui/core/Paper';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import StepLabel from '@material-ui/core/StepLabel';
-import Button from '@material-ui/core/Button';
-import Link from '@material-ui/core/Link';
-import Typography from '@material-ui/core/Typography';
-import DateForm from './DateForm';
-import TimeForm from './TimeForm';
-import InformationForm from './InformationForm';
-import ReviewForm from './ReviewForm';
-import GlobalState from './GlobalState';
-import AddressForm from './AddressForm';
-import BookService from './services/BookService';
+import React from "react";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import CssBaseline from "@material-ui/core/CssBaseline";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Paper from "@material-ui/core/Paper";
+import Stepper from "@material-ui/core/Stepper";
+import Step from "@material-ui/core/Step";
+import StepLabel from "@material-ui/core/StepLabel";
+import Button from "@material-ui/core/Button";
+import Link from "@material-ui/core/Link";
+import Typography from "@material-ui/core/Typography";
+import DateForm from "./DateForm";
+import TimeForm from "./TimeForm";
+import InformationForm from "./InformationForm";
+import ReviewForm from "./ReviewForm";
+import GlobalState from "./GlobalState";
+import AddressForm from "./AddressForm";
+import BookService from "./services/BookService";
 
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
-import DialogTitle from '@material-ui/core/DialogTitle';
-import Alert from '@material-ui/lab/Alert';
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogContentText from "@material-ui/core/DialogContentText";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import Alert from "@material-ui/lab/Alert";
 
-import HttpsIcon from '@material-ui/icons/Https';
+import HttpsIcon from "@material-ui/icons/Https";
 
-import {BrowserView, MobileView, isMobile} from 'react-device-detect';
+import { BrowserView, MobileView, isMobile } from "react-device-detect";
 
-import logoImage from './images/logo.png';
-import { Checkbox, FormControlLabel, Grid } from '@material-ui/core';
+import logoImage from "./images/logo.png";
+import { Checkbox, FormControlLabel, Grid } from "@material-ui/core";
 
-import LiveHelpIcon from '@material-ui/icons/LiveHelp';
-import faq from './FAQ';
-import { useEffect } from 'react';
-
+import LiveHelpIcon from "@material-ui/icons/LiveHelp";
+import faq from "./FAQ";
+import { useEffect } from "react";
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      {new Date().getFullYear()}
-      {' '}
+      {"Copyright © "}
+      {new Date().getFullYear()}{" "}
       <Link color="inherit" href="#">
-           <strong> Medical Express Clinic </strong> 
-      </Link>{isMobile ? ' ' : ' All rights reserved.' }
-   
-       
- 
-     
+        <strong> Medical Express Clinic </strong>
+      </Link>
+      {isMobile ? " " : " All rights reserved."}
     </Typography>
   );
 }
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
-    position: 'relative',
+    position: "relative",
     backgroundColor: "#fff",
     color: "#00a1c5",
-    alignItems: 'center',
+    alignItems: "center",
   },
 
   logo: {
     maxWidth: 160,
   },
   layout: {
-    width: 'auto',
+    width: "auto",
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
     [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
       width: 700,
-      marginLeft: 'auto',
-      marginRight: 'auto',
+      marginLeft: "auto",
+      marginRight: "auto",
     },
   },
   paper: {
@@ -89,8 +84,8 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3, 0, 5),
   },
   buttons: {
-    display: 'flex',
-    justifyContent: 'flex-end',
+    display: "flex",
+    justifyContent: "flex-end",
   },
   button: {
     marginTop: theme.spacing(3),
@@ -99,73 +94,65 @@ const useStyles = makeStyles((theme) => ({
 
   bold: {
     fontWeight: "800",
-    padding: "5px"
+    padding: "5px",
   },
 
   doneImage: {
     width: "240px",
     height: "150px",
-    margin: "20px"
+    margin: "20px",
   },
 
   logoImage: {
     width: "40px",
     height: "40px",
     marginLeft: "0px",
-    
   },
   privacyButton: {
-    marginBottom : "20px",
-    width: "115px"
+    marginBottom: "20px",
+    width: "115px",
   },
 
   faqButton: {
-    marginBottom : "20px",
-    marginLeft : "10px",
+    marginBottom: "20px",
+    marginLeft: "10px",
     // backgroundColor : "#2f942e",
     // "&:hover": {
     //   background: "green",
     //   color: "#fff"
     // },
-    textDecoration : "none !important",
-    width: "115px"
-
+    textDecoration: "none !important",
+    width: "115px",
   },
 
   getStartedButton: {
-    marginTop : "30px",
-    marginBottom : "10px",
-
-},
-textContent : {
-    color : "#666f77",
-    fontSize : "1rem",
+    marginTop: "30px",
+    marginBottom: "10px",
+  },
+  textContent: {
+    color: "#666f77",
+    fontSize: "1rem",
     textAlign: "justify",
     paddingLeft: "8px",
     paddingRight: "20px",
     lineHeight: "2em",
-    fontWeight : "400"
-},
+    fontWeight: "400",
+  },
 
-textContentMobile : {
-  color : "#666f77",
-  fontSize : "0.9rem",
-  textAlign: "justify",
-  paddingLeft: "8px",
-  paddingRight: "20px",
-  lineHeight: "2em",
-  fontWeight : "400"
-},
-
+  textContentMobile: {
+    color: "#666f77",
+    fontSize: "0.9rem",
+    textAlign: "justify",
+    paddingLeft: "8px",
+    paddingRight: "20px",
+    lineHeight: "2em",
+    fontWeight: "400",
+  },
 }));
-
-
-
 
 export default function AgreementForm() {
   const [state, setState] = React.useContext(GlobalState);
   const classes = useStyles();
-
 
   //// ** Dialog
 
@@ -174,14 +161,13 @@ export default function AgreementForm() {
   const [error, setError] = React.useState(false);
 
   const [open, setOpen] = React.useState(false);
-  const [scroll, setScroll] = React.useState('paper');
+  const [scroll, setScroll] = React.useState("paper");
 
   const [openFAQ, setOpenFAQ] = React.useState(false);
-  const [scrollFAQ, setScrollFAQ] = React.useState('paper');
-
+  const [scrollFAQ, setScrollFAQ] = React.useState("paper");
 
   useEffect(() => {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
   }, []);
 
   const descriptionElementRef = React.useRef(null);
@@ -204,7 +190,6 @@ export default function AgreementForm() {
     }
   }, [openFAQ]);
 
-
   const handleClickOpen = (scrollType) => () => {
     setOpen(true);
     setScroll(scrollType);
@@ -223,42 +208,34 @@ export default function AgreementForm() {
     setOpenFAQ(false);
   };
 
-
-  const checkClicked = (event, id) =>
-  {
-    switch (id)
-    {
-        case 1: 
-            setCheck({...check, check1:event.target.checked});
-            break;
-        case 2: 
-            setCheck({...check, check2:event.target.checked});
-            break;
-        case 3: 
-            setCheck({...check, check3:event.target.checked});
-            break;
-        case 4: 
-            setCheck({...check, check4:event.target.checked});
-            break;
-        case 5: 
-            setCheck({...check, check5:event.target.checked});
-        break;    
-        default:
-                break;
-
+  const checkClicked = (event, id) => {
+    switch (id) {
+      case 1:
+        setCheck({ ...check, check1: event.target.checked });
+        break;
+      case 2:
+        setCheck({ ...check, check2: event.target.checked });
+        break;
+      case 3:
+        setCheck({ ...check, check3: event.target.checked });
+        break;
+      case 4:
+        setCheck({ ...check, check4: event.target.checked });
+        break;
+      case 5:
+        setCheck({ ...check, check5: event.target.checked });
+        break;
+      default:
+        break;
     }
+  };
 
-  }
+  const backButtonClicked = (event) => {
+    setState((state) => ({ ...state, getStarted: false }));
+  };
 
- const backButtonClicked = (event) =>
- {
-     setState(state => ({...state, getStarted:false}));
- }
-
-
-const getAgreeClicked = (event) => {
-
-  setState(state => ({...state, agreed: true}));
+  const getAgreeClicked = (event) => {
+    setState((state) => ({ ...state, agreed: true }));
 
     // if (check.check1 && check.check2 && check.check3 && check.check4 && check.check5)
     // {
@@ -268,14 +245,19 @@ const getAgreeClicked = (event) => {
     // {
     //     setError(true);
     // }
-}
+  };
 
-useEffect( () => {
-  if (check.check1 && check.check2 && check.check3 && check.check4 && check.check5)
-  {
-    setError(false);
-  }
-}, [check]);
+  useEffect(() => {
+    if (
+      check.check1 &&
+      check.check2 &&
+      check.check3 &&
+      check.check4 &&
+      check.check5
+    ) {
+      setError(false);
+    }
+  }, [check]);
 
   return (
     <React.Fragment>
@@ -313,15 +295,59 @@ useEffect( () => {
       <main className={classes.layout}>
         <Paper className={classes.paper}>
           <Typography
-            style={{ marginBottom: "30px"}}
+            style={{ marginBottom: "20px" }}
             component="h1"
             variant="h6"
             align="left"
           >
-            Patients wishing to book an appointment must confirm that:
+            Quick Checklist Before Booking:
           </Typography>
 
-          <ul style={{ fontSize: "1rem", color: "#333", textAlign: "justify" }}>
+          <ol style={{ fontSize: "1rem", color: "#333", textAlign: "justify" }}>
+            <li style={{ marginTop: "10px" }}>
+              <strong>Self-Request Test: </strong> I&#39;m booking a blood test
+              myself and understand that I&#39;ll only get the lab report.
+            </li>
+            <li style={{ marginTop: "10px" }}>
+              <strong>Email Results: </strong> My results will be emailed to me
+              with no comments or advice from the clinic or doctor.
+            </li>
+            <li style={{ marginTop: "10px" }}>
+              <strong>Pre-Test Instructions: </strong> I&#39;m aware of any
+              special instructions (like fasting) for my test.
+            </li>
+            <li style={{ marginTop: "10px" }}>
+              <strong>Non-Urgent Service: </strong> This service is not for
+              urgent cases. Blood samples go to an external lab, and result
+              times listed on the website are estimates only.
+            </li>
+            <li style={{ marginTop: "10px" }}>
+              <strong>Fees: </strong> I&#39;ll pay a £50 phlebotomy (blood draw)
+              fee now, and the test fee at the clinic. No phlebotomy fee for
+              urine, swab, or sexual health tests; the £50 booking fee will be
+              deducted from the total cost.
+            </li>
+
+            <li style={{ marginTop: "10px" }}>
+              <strong>Terms and Conditions:</strong> I have read and agree to
+              the {" "}
+              <a
+                href="https://www.blood.london/terms-and-condition/"
+                target="_blank"
+                style={{
+                  fontWeight: "500",
+                  textDecoration: "underline",
+                  color: "#111",
+                }}
+              >
+                {" "}
+                Terms and Conditions{" "}
+              </a>{" "}
+               of the service.
+            </li>
+          </ol>
+
+          {/* <ul style={{ fontSize: "1rem", color: "#333", textAlign: "justify" }}>
             <li style={{ marginTop: "15px" }}>
             I am making an appointment for a blood test on a self-request basis. I have reviewed the{" "}
               <a
@@ -391,7 +417,7 @@ useEffect( () => {
             </li>
 
           </ul>
-
+ */}
           {/* <Grid container  direction="column"  justify="flex-start" alignItems="flex-start" spacing={3}>
 
                 <Grid item xs={12}  >
@@ -450,15 +476,14 @@ useEffect( () => {
               isMobile ? classes.textContentMobile : classes.textContent
             }
             style={{
-              background: "#ffe8e8",
-              color: "#990000",
+              background: "#fafafa",
+              color: "#333",
               padding: "10px",
               borderRadius: "8px",
             }}
           >
-            If you cannot confirm all the point stated above, you must not
-            proceed any further. Please click the "Agree" button to agree to
-            these terms.
+            <strong> To Continue: </strong> Click &quot;Agree&quot; if you
+            accept these terms. If not, please do not proceed with booking.
           </p>
 
           {error && (
