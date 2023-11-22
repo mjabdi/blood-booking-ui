@@ -358,7 +358,7 @@ export default function ReviewForm() {
                     15 minutes
                   </li>
 
-                  <li className={classes.li}  style={{lineHeight:"2rem"}}>
+                  {/* <li className={classes.li}  style={{lineHeight:"2rem"}}>
                     <span className={classes.infoTitleTime} >
                       <FontAwesomeIcon
                         icon={faNotesMedical}
@@ -371,7 +371,7 @@ export default function ReviewForm() {
                       {" "}
                       {state.packageName? `${state.packageName} - ${state.packagePrice}` : '-'}
                     </span>
-                  </li>
+                  </li> */}
                   
                   <li className={classes.li}  style={{lineHeight:"2rem"}} hidden={!state.indivisualTests || state.indivisualTests.length === 0}>
                     <span className={classes.infoTitleTime} >
